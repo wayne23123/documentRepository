@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send POST Request</title>
+    <style>
+      body {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        max-width: 100vw;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .mainLayout {
+        min-height: 100vh;
+        display: flex;
+      }
+      #urlInput {
+        width: 100%;
+      }
+      #myForm {
+        width: 30vw;
+        min-height: 100vh;
+      }
+      #jsonData {
+        width: 100%;
+        height: 90vh;
+      }
+      #targetFrame {
+        width: 70vw;
+        min-height: 100vh;
+        padding-left: 8px;
+        border: none;
+      }
+      .button-container {
+        padding-left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="mainLayout">
+      <div>
+        <form id="myForm">
+          <div>
+            <input
+              type="text"
+              id="urlInput"
+              name="urlInput"
+              placeholder="Enter POST URL"
+              value=""
+            />
+          </div>
+          <br />
+          <textarea id="jsonData" name="jsonData" rows="20" cols="80">
+{
+    "imageFile": "epy/templateimage/2024/04/30/5740ccdbd3868644b49498cd95ba8077_png",
+    "settings": []
+}</textarea
+          ><br />
+          <div class="button-container">
+            <button type="button" id="formatButton">Format JSON</button>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <iframe id="targetFrame" name="targetFrame" src="about:blank"></iframe>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById('myForm');
+      const urlInput = document.getElementById('urlInput');
+      const jsonDataTextarea = document.getElementById('jsonData');
+      const formatButton = document.getElementById('formatButton');
+
+      // 监听格式化按钮的点击事件
+      formatButton.addEventListener('click', function () {
+          const jsonData = JSON.parse(jsonDataTextarea.value.trim());
+          jsonDataTextarea.value = JSON.stringify(jsonData, null, 2); // 格式化并更新 textarea 的值
+      });
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const jsonData = JSON.parse(jsonDataTextarea.value.trim());
+        const postUrl = urlInput.value.trim();
+
+        fetch(postUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(jsonData),
+        })
+          .then((response) => response.blob())
+          .then((blob) => {
+            const imageUrl = URL.createObjectURL(blob);
+            const iframe = document.querySelector('iframe[name="targetFrame"]');
+            iframe.src = imageUrl;
+            console.log('Success:', imageUrl);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    </script>
+  </body>
+</html>
