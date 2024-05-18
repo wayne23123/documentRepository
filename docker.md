@@ -34,3 +34,11 @@ docker run <id值>
  docker run -p 3000:3000 <id值>
 
  瀏覽器到 http://localhost:3000/ 即可以訪問
+
+
+# 指令_列出所有運行中的容器container
+docker ps
+
+
+# 指令_停止並關閉容器
+docker stop <NAMES值>
