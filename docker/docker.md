@@ -65,8 +65,13 @@ https://hub.docker.com/
 docker run node
 使用在 Docker hub 上找到的 節點 映像，來創建容器
 
+docker run -it node
+我們希望將容器內部的交互式會話公開給我們的宿主計算機
+打完後：
+進入交互式node終端
 
-# 指令_
+
+# 指令_列出所有運行中的容器container
 docker ps -a
 ps 代表進程
 -a 將顯示 Docker 為我們創建的所有容器的所有進程
