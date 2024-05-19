@@ -71,6 +71,9 @@ docker run -it node
 進入交互式node終端
 
 
+通常會建立在這些映像上，然後建立自己的映象
+
+
 # 指令_列出所有運行中的容器container
 docker ps -a
 ps 代表進程
