@@ -151,8 +151,13 @@ CMD 不會在創建映像時執行，而是在基於映像啟動容器時執行
 CMD 語法，array，用字串分割命令
 
 
+9.docker build .
 
+在創建好 Dockerfile 之後，到 cmd 打這個指令
 
+想根據這個 Dockerfile 中的指令創建一個映像，告訴 Docker 基於 Dockerfile 構建一個新的自定義映像
 
+這裡需要指定 Docker 能夠找到 Dockerfile 的路徑
 
+後面補上 . 將告訴 Docker，Dockerfile 將位於我們運行此命令的同一個文件夾中
 
