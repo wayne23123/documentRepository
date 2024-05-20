@@ -215,3 +215,37 @@ CMD 語法，array，用字串分割命令
 
 映像就會被鎖定，其中的代碼無法更改，除非您重新構映像
 
+
+# 示範 example02 優化
+
+- 優化前
+
+FROM node
+
+WORKDIR /app
+
+COPY . /app
+
+RUN npm install
+
+EXPOSE 80
+
+CMD ["node", "server.js"]
+
+
+- 優化後
+
+FROM node
+
+WORKDIR /app
+
+COPY package.json /app
+
+RUN npm install
+
+COPY . /app
+
+EXPOSE 80
+
+CMD ["node", "server.js"]
+
