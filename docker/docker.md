@@ -249,3 +249,10 @@ EXPOSE 80
 
 CMD ["node", "server.js"]
 
+
+# Managing Images & Containers
+
+在任何 docker 指令上，可以用 --help 查看所有選項
+
+
+
