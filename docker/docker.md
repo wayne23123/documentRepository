@@ -255,11 +255,16 @@ CMD ["node", "server.js"]
 在任何 docker 指令上，可以用 --help 查看所有選項
 
 
-# 指令_進入 attach  分離(預設)VS連接的容器
+# 指令_進入 attach(附加模式)(預設非attach)   分離(預設)VS連接的容器
 
 docker run -p 3000:80 -d <id值>
 
 docker attach <name值>
 
 docker logs -f <name值>
+
+
+# 指令_在 附加模式下 重新啟動 一個停止的容器
+
+docker start -a <name值>
 
