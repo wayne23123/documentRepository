@@ -263,6 +263,38 @@
       </div>
     </div>
     <script>
+              const sidebar = document.querySelector('.sidebar');
+      const mainContent = document.querySelector('.main-content');
+      const divider = document.getElementById('divider');
+      const mainLayout = document.querySelector('.main-layout');
+
+      let isResizing = false;
+
+      divider.addEventListener('mousedown', handleMouseDown);
+
+      function handleMouseDown(e) {
+        isResizing = true;
+        mainLayout.addEventListener('mousemove', handleMouseMove);
+        mainLayout.addEventListener('mouseup', handleMouseUp);
+      }
+
+      function handleMouseMove(e) {
+        if (isResizing) {
+          const sidebarWidth = e.clientX - sidebar.getBoundingClientRect().left;
+          const mainContentWidth =
+            window.innerWidth - sidebarWidth - divider.offsetWidth;
+          sidebar.style.width = `${sidebarWidth}px`;
+          mainContent.style.width = `${mainContentWidth}px`;
+        }
+      }
+
+      function handleMouseUp() {
+        isResizing = false;
+        mainLayout.removeEventListener('mousemove', handleMouseMove);
+        mainLayout.removeEventListener('mouseup', handleMouseUp);
+      }
+
+
       //更改GET方法顏色
       const methodSelects = document.querySelectorAll('.httpMethod');
 
