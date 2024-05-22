@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send POST Request</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+      button {
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .main-layout {
+        display: flex;
+        flex: 1;
+      }
+      .sidebar {
+        flex: 0 0 30%;
+        background-color: #181a1b;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .form-section form {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-row {
+        display: flex;
+        align-items: center;
+      }
+      .form-section {
+        margin-bottom: 10px;
+      }
+      .form-section select,
+      .form-section input[type='text'],
+      .form-section input[type='submit'] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .form-row input[type='text'] {
+        flex: 1;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      #postForm {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: #181a1b;
+        padding: 10px;
+      }
+      #postUrl,
+      #postData {
+        width: calc(100% - 10px);
+        margin-bottom: 10px;
+        padding: 5px;
+        border: none;
+        background-color: #121212;
+        color: #fff;
+      }
+      #postData {
+        flex: 1;
+        resize: none;
+      }
+      .button-group {
+        display: flex;
+      }
+      .button-group button {
+        flex: 1;
+        margin-right: 5px;
+        padding: 5px;
+        background-color: #6b6b6b;
+        color: #ffffff;
+        cursor: pointer;
+      }
+      .iframe-container {
+        flex: 1;
+        background-color: #202325;
+      }
+      #responseFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-layout">
+      <div class="sidebar">
+        <div class="form-section">
+          <form id="logForm">
+            <div class="form-row">
+              <select
+                name="httpMethod"
+                id="logFormHttpMethod"
+                class="httpMethod"
+              >
+                <option value="GET" data-color="#007bff">GET</option>
+                <option value="POST" data-color="#28a745">POST</option>
+                <option value="DELETE" data-color="#dc3545">DELETE</option>
+                <option value="PUT" data-color="#ffc107">PUT</option>
+              </select>
+              <input
+                type="text"
+                id="logFormUrl"
+                name="url"
+                placeholder="Enter URL"
+                value=""
+              />
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+        <div class="form-section">
+          <form id="fontListForm">
+            <div class="form-row">
+              <select
+                name="httpMethod"
+                id="fontListFormHttpMethod"
+                class="httpMethod"
+              >
+                <option value="GET" data-color="#007bff">GET</option>
+                <option value="POST" data-color="#28a745">POST</option>
+                <option value="DELETE" data-color="#dc3545">DELETE</option>
+                <option value="PUT" data-color="#ffc107">PUT</option>
+              </select>
+              <input
+                type="text"
+                id="fontListFormUrl"
+                name="url"
+                placeholder="Enter URL"
+                value=""
+              />
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+        <div class="form-section">
+          <form id="deleteAllForm">
+            <div class="form-row">
+              <select
+                name="httpMethod"
+                id="deleteAllFormHttpMethod"
+                class="httpMethod"
+              >
+                <option value="GET" data-color="#007bff">GET</option>
+                <option value="POST" data-color="#28a745">POST</option>
+                <option value="DELETE" selected data-color="#dc3545">
+                  DELETE
+                </option>
+                <option value="PUT" data-color="#ffc107">PUT</option>
+              </select>
+              <input
+                type="text"
+                id="deleteAllFormHttpUrl"
+                name="url"
+                placeholder="Enter URL"
+                value=""
+              />
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+        <form id="postForm">
+          <div>POST 目標 API</div>
+          <input
+            type="text"
+            id="postUrl"
+            name="postUrl"
+            placeholder="Enter POST URL"
+            value=""
+          />
+          <div>請求體 json格式</div>
+          <textarea
+            id="postData"
+            name="postData"
+            rows="10"
+            cols="80"
+          >
+          {
+            "imageFile": "",
+            "settings": [
+              {
+                "box": {
+                  "type_format": 1,
+                  "text": "",
+                  "id": 11776,
+                  "sel_id": 118,
+                  "index": 1,
+                  "type": "text",
+                  "left": 28,
+                  "top": 220,
+                  "width": 764,
+                  "height": 67,
+                  "content": "100",
+                  "rotate": 0,
+                  "pick": 1,
+                  "number": 1,
+                  "type_index": "",
+                  "color": "rgba(0,0,0,1)",
+                  "angle": 0,
+                  "stops": [],
+                  "shadowX": 0,
+                  "shadowY": 0,
+                  "shadowAmbiguity": 0,
+                  "shadowColor": "transparent",
+                  "fontSize": 50,
+                  "weight": 0,
+                  "isFontWeight": false,
+                  "style": "normal",
+                  "isItalic": false,
+                  "decoration": "none",
+                  "isUnderLine": false,
+                  "fontFamily": 59,
+                  "strokeWidth": 0,
+                  "strokeColor": "transparent"
+                },
+              },
+            ],
+            "fontData": []
+          }
+                      
+        </textarea>
+          <div class="button-group">
+            <button type="button" id="formatButton">Format JSON</button>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+      <div class="main-content">
+        <div class="iframe-container">
+          <iframe
+            id="responseFrame"
+            name="responseFrame"
+            src="about:blank"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+    <script>
+      //更改GET方法顏色
+      const methodSelects = document.querySelectorAll('.httpMethod');
+
+      const updateSelectColor = (selectElement) => {
+        const selectedOption =
+          selectElement.options[selectElement.selectedIndex];
+        const color = selectedOption.getAttribute('data-color');
+        selectElement.style.backgroundColor = color;
+      };
+
+      // 初始化每个 select 的背景色，并添加事件监听器
+      methodSelects.forEach((selectElement) => {
+        updateSelectColor(selectElement);
+        selectElement.addEventListener('change', () =>
+          updateSelectColor(selectElement)
+        );
+      });
+
+      //第一個 logForm
+      document
+        .getElementById('logForm')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const postUrl = document.getElementById('logFormUrl').value.trim();
+
+          const httpMethod = document.getElementById('logFormHttpMethod').value;
+
+          fetch(postUrl, {
+            method: httpMethod,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.text();
+            })
+            .then((data) => {
+              const iframe = document.querySelector(
+                'iframe[name="responseFrame"]'
+              );
+              const blob = new Blob([data], { type: 'text/html' });
+              const url = URL.createObjectURL(blob);
+              iframe.src = url;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+
+      // 第二個 fontListForm
+      document
+        .getElementById('fontListForm')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const postUrl = document
+            .getElementById('fontListFormUrl')
+            .value.trim();
+
+          const httpMethod = document.getElementById(
+            'fontListFormHttpMethod'
+          ).value;
+
+          const style = `
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                background-color: #c4c4c4;
+                color: #000
+              }
+            </style>
+          `;
+
+          fetch(postUrl, {
+            method: httpMethod,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.text();
+            })
+            .then((data) => {
+              const iframe = document.querySelector(
+                'iframe[name="responseFrame"]'
+              );
+              const blob = new Blob([style + data], {
+                type: 'text/html;charset=UTF-8',
+              });
+
+              const url = URL.createObjectURL(blob);
+              iframe.src = url;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+
+      // 第三個 deleteAllForm
+      document
+        .getElementById('deleteAllForm')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const postUrl = document
+            .getElementById('deleteAllFormHttpUrl')
+            .value.trim();
+
+          const httpMethod = document.getElementById(
+            'deleteAllFormHttpMethod'
+          ).value;
+
+          const style = `
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                background-color: #c4c4c4;
+                color: #000
+              }
+            </style>
+          `;
+
+          fetch(postUrl, {
+            method: httpMethod,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.text();
+            })
+            .then((data) => {
+              const iframe = document.querySelector(
+                'iframe[name="responseFrame"]'
+              );
+              const blob = new Blob([style + data], {
+                type: 'text/html;charset=UTF-8',
+              });
+
+              const url = URL.createObjectURL(blob);
+              iframe.src = url;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+
+      //POST請求
+      const form = document.getElementById('postForm');
+      const urlInput = document.getElementById('postUrl');
+      const textArea = document.getElementById('postData');
+      const formatButton = document.getElementById('formatButton');
+
+      formatButton.addEventListener('click', function () {
+        const textAreaJsonData = JSON.parse(textArea.value.trim());
+        textArea.value = JSON.stringify(textAreaJsonData, null, 2);
+      });
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const textAreaJsonData = JSON.parse(textArea.value.trim());
+        const postUrl = urlInput.value.trim();
+
+        fetch(postUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(textAreaJsonData),
+        })
+          .then((response) => response.blob())
+          .then((blob) => {
+            const imageUrl = URL.createObjectURL(blob);
+            const iframe = document.querySelector(
+              'iframe[name="responseFrame"]'
+            );
+            iframe.src = imageUrl;
+            console.log('Success:', imageUrl);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    </script>
+  </body>
+</html>
