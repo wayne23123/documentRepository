@@ -34,12 +34,13 @@
         flex: 1;
       }
       .sidebar {
-        flex: 0 0 30%;
         background-color: #181a1b;
         padding: 10px;
         display: flex;
         flex-direction: column;
         overflow-y: auto;
+        width: 30%; /* 初始宽度 */
+        min-width: 200px; /* 最小宽度 */
       }
       .form-section form {
         display: flex;
@@ -66,7 +67,14 @@
         flex: 1;
         display: flex;
         flex-direction: column;
+        position: relative;
       }
+      .divider {
+        width: 16px;
+        cursor: ew-resize;
+        background-color: #ccc;
+      }
+
       #postForm {
         display: flex;
         flex-direction: column;
@@ -252,6 +260,7 @@
           </div>
         </form>
       </div>
+      <div class="divider" id="divider"></div>
       <div class="main-content">
         <div class="iframe-container">
           <iframe
