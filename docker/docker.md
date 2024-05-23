@@ -268,3 +268,14 @@ docker logs -f <name值>
 
 docker start -a <name值>
 
+
+# 指令
+
+docker run -i
+
+他允許在 interactive 交互模式下 啟動此容器
+
+
+
+
+
