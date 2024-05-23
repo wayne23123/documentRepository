@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MultiPageSidebarDemo</title>
-    <meta name="author" content="Wayne Lu 2024">
+    <meta name="author" content="Wayne Lu 2024" />
     <style>
       * {
         box-sizing: border-box;
@@ -36,6 +36,7 @@
       }
       .sidebar {
         background-color: #181a1b;
+        color: #fff;
         padding: 5px;
         display: flex;
         flex-direction: column;
@@ -57,20 +58,29 @@
         justify-content: flex-end;
         margin-bottom: 10px;
       }
+      .httpMethod {
+        color: #fff;
+      }
       .form-section select,
       .form-section input[type='text'],
       .form-section input[type='submit'] {
         padding: 8px;
-        border: 1px solid #ccc;
+        border: 1px solid #3e4446;
         border-radius: 4px;
       }
       .form-row input[type='text'] {
+        background-color: #121212;
+        color: #fff;
         flex: 1;
+      }
+      .form-row input[type='submit'] {
+        background-color: #6b6b6b;
+        color: #fff;
       }
       .divider {
         width: 6px;
         cursor: ew-resize;
-        background-color: #ccc;
+        background-color: #35393b;
       }
       .main-content {
         flex: 1;
@@ -103,8 +113,8 @@
         flex: 1;
         margin-right: 5px;
         padding: 5px;
-        background-color: #6b6b6b;
-        color: #ffffff;
+        background-color: #51575b;
+        color: #fff;
         cursor: pointer;
       }
       .iframe-container {
@@ -125,7 +135,7 @@
         height: 100%;
         background: rgba(0, 0, 0, 0);
         z-index: 9999;
-        pointer-events: none; 
+        pointer-events: none;
       }
       .sidebar-toggle-button {
         position: fixed;
@@ -135,7 +145,7 @@
         border-radius: 50%;
         background-color: #35393b;
         cursor: pointer;
-        transition: all 0.8s ease;
+        transition: all 0.6s ease;
       }
       .sidebar-toggle-button:hover {
         background-color: #535a5f;
@@ -153,12 +163,13 @@
         position: fixed;
         top: 0;
         left: 0;
-        background-color: #fff;
+        background-color: #181a1b;
         height: 100vh;
-        transition: all 0.8s ease;
+        box-shadow: 0 0 20px rgba(99, 99, 99, 0.4);
+        transition: all 0.6s ease;
       }
       .sidebar-container {
-        padding: 50px;
+        padding: 30px;
       }
       .sidebar-layout.hidden {
         transform: translateX(-200%);
@@ -209,10 +220,12 @@
   </head>
   <body>
     <div class="main-layout">
-      <div class="page page-one active" id='page-one'>
+      <div class="page page-one active" id="page-one">
         <div class="sidebar">
           <div class="form-section">
-            <div class="form-section-title">MultiPageSidebarDemo By Wayne Lu 2024</div>
+            <div class="form-section-title">
+              MultiPageSidebarDemo By Wayne Lu 2024
+            </div>
             <form id="logForm">
               <div class="form-row">
                 <select
@@ -249,18 +262,29 @@
           </div>
         </div>
       </div>
-      <div class="page page-two" id='page-two'>
+      <div
+        class="page page-two"
+        style="background-color: #202325"
+        id="page-two"
+      >
         <h1 style="margin: auto">This is Page Two</h1>
       </div>
 
-      <div class="page page-three" id='page-three'>
+      <div
+        class="page page-three"
+        style="background-color: #202325"
+        id="page-three"
+      >
         <h1 style="margin: auto">This is Page Three</h1>
       </div>
 
-      <div class="page page-four" id='page-four'>
+      <div
+        class="page page-four"
+        style="background-color: #202325"
+        id="page-four"
+      >
         <h1 style="margin: auto">This is Page Four</h1>
       </div>
-
 
       <div class="sidebar-layout hidden" id="sidebar">
         <div class="toggle-button-container">
@@ -276,19 +300,19 @@
           <div class="page-switch-button" onclick="reSwitchPage()">
             <span id="pageSwitchText">node.js伺服器測試資料2</span>
           </div>
-          <br>
+          <br />
           <div class="page-switch-button" onclick="switchPage('page-one')">
             <span id="pageSwitchText">node.js伺服器測試資料1</span>
           </div>
-          <br>
+          <br />
           <div class="page-switch-button" onclick="switchPage('page-two')">
             <span id="pageSwitchText">node.js伺服器測試資料2</span>
           </div>
-          <br>
+          <br />
           <div class="page-switch-button" onclick="switchPage('page-three')">
             <span id="pageSwitchText">node.js伺服器測試資料3</span>
           </div>
-          <br>
+          <br />
           <div class="page-switch-button" onclick="switchPage('page-four')">
             <span id="pageSwitchText">node.js伺服器測試資料4</span>
           </div>
@@ -304,112 +328,110 @@
     </div>
   </body>
   <script>
+    // 中間左右調整bar
+    const sidebar = document.querySelector('.sidebar');
+    const mainContent = document.querySelector('.main-content');
+    const divider = document.getElementById('divider');
+    const mainLayout = document.querySelector('.main-layout');
+    const iframeMask = document.getElementById('iframe-mask');
 
-         // 中間左右調整bar
-         const sidebar = document.querySelector('.sidebar');
-      const mainContent = document.querySelector('.main-content');
-      const divider = document.getElementById('divider');
-      const mainLayout = document.querySelector('.main-layout');
-      const iframeMask = document.getElementById('iframe-mask');
+    let isResizing = false;
 
-      let isResizing = false;
+    divider.addEventListener('mousedown', handleMouseDown);
 
-      divider.addEventListener('mousedown', handleMouseDown);
-
-      function handleMouseDown(e) {
-        isResizing = true;
-        iframeMask.style.pointerEvents = 'auto'; // Enable pointer events on the mask
-        mainLayout.addEventListener('mouseup', handleMouseUp);
-        mainLayout.addEventListener('mousemove', handleMouseMove);
-      }
-
-      function handleMouseMove(e) {
-        if (isResizing) {
-          const sidebarWidth = e.clientX - sidebar.getBoundingClientRect().left;
-          const mainContentWidth =
-            window.innerWidth - sidebarWidth - divider.offsetWidth;
-          sidebar.style.width = `${sidebarWidth}px`;
-          mainContent.style.width = `${mainContentWidth}px`;
-        }
-      }
-
-      function handleMouseUp() {
-        isResizing = false;
-        iframeMask.style.pointerEvents = 'none'; // Disable pointer events on the mask
-        mainLayout.removeEventListener('mouseup', handleMouseUp);
-        mainLayout.removeEventListener('mousemove', handleMouseMove);
-      }
-
-  let currentPageIndex = 0; // 当前页面索引
-
-
-  // 切换到指定页面
-function switchPage(pageId) {
-  const pages = document.querySelectorAll('.page');
-  pages.forEach((page) => {
-    if (page.id === pageId) {
-      page.classList.add('active');
-    } else {
-      page.classList.remove('active');
+    function handleMouseDown(e) {
+      isResizing = true;
+      iframeMask.style.pointerEvents = 'auto'; // Enable pointer events on the mask
+      mainLayout.addEventListener('mouseup', handleMouseUp);
+      mainLayout.addEventListener('mousemove', handleMouseMove);
     }
-  });
-}
 
-function reSwitchPage() {
-  const pages = document.querySelectorAll('.page');
-  currentPageIndex = (currentPageIndex + 1) % pages.length; // 循环切换页面
-  updatePageVisibility(pages);
-  updatePageSwitchText();
-}
-
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  const sidebarToggleButton = document.getElementById(
-    'sidebarToggleButton'
-  );
-  sidebar.classList.toggle('hidden');
-  sidebarToggleButton.classList.toggle('hidden');
-}
-
-// 更新页面的显示状态
-function updatePageVisibility(pages) {
-  pages.forEach((page, index) => {
-    if (index === currentPageIndex) {
-      page.classList.add('active');
-    } else {
-      page.classList.remove('active');
+    function handleMouseMove(e) {
+      if (isResizing) {
+        const sidebarWidth = e.clientX - sidebar.getBoundingClientRect().left;
+        const mainContentWidth =
+          window.innerWidth - sidebarWidth - divider.offsetWidth;
+        sidebar.style.width = `${sidebarWidth}px`;
+        mainContent.style.width = `${mainContentWidth}px`;
+      }
     }
-  });
-}
 
-function switchToPage(pageId) {
-    const pages = document.querySelectorAll('.page');
-    pages.forEach((page) => {
+    function handleMouseUp() {
+      isResizing = false;
+      iframeMask.style.pointerEvents = 'none'; // Disable pointer events on the mask
+      mainLayout.removeEventListener('mouseup', handleMouseUp);
+      mainLayout.removeEventListener('mousemove', handleMouseMove);
+    }
+
+    let currentPageIndex = 0; // 当前页面索引
+
+    // 切换到指定页面
+    function switchPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach((page) => {
         if (page.id === pageId) {
-            page.classList.add('active');
+          page.classList.add('active');
         } else {
-            page.classList.remove('active');
+          page.classList.remove('active');
         }
-    });
-}
+      });
+    }
 
-// 更新页面切换按钮的文本
-function updatePageSwitchText() {
-  const pageSwitchText = document.getElementById('pageSwitchText');
-  switch (currentPageIndex) {
-    case 0:
-      pageSwitchText.textContent = 'node.js伺服器測試資料1';
-      break;
-    case 1:
-      pageSwitchText.textContent = 'node.js伺服器測試資料2';
-      break;
-    case 2:
-      pageSwitchText.textContent = 'node.js伺服器測試資料3';
-      break;
-    case 3:
-      pageSwitchText.textContent = 'node.js伺服器測試資料4';
-      break;
-  }
-}
+    function reSwitchPage() {
+      const pages = document.querySelectorAll('.page');
+      currentPageIndex = (currentPageIndex + 1) % pages.length; // 循环切换页面
+      updatePageVisibility(pages);
+      updatePageSwitchText();
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const sidebarToggleButton = document.getElementById(
+        'sidebarToggleButton'
+      );
+      sidebar.classList.toggle('hidden');
+      sidebarToggleButton.classList.toggle('hidden');
+    }
+
+    // 更新页面的显示状态
+    function updatePageVisibility(pages) {
+      pages.forEach((page, index) => {
+        if (index === currentPageIndex) {
+          page.classList.add('active');
+        } else {
+          page.classList.remove('active');
+        }
+      });
+    }
+
+    function switchToPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      pages.forEach((page) => {
+        if (page.id === pageId) {
+          page.classList.add('active');
+        } else {
+          page.classList.remove('active');
+        }
+      });
+    }
+
+    // 更新页面切换按钮的文本
+    function updatePageSwitchText() {
+      const pageSwitchText = document.getElementById('pageSwitchText');
+      switch (currentPageIndex) {
+        case 0:
+          pageSwitchText.textContent = 'node.js伺服器測試資料1';
+          break;
+        case 1:
+          pageSwitchText.textContent = 'node.js伺服器測試資料2';
+          break;
+        case 2:
+          pageSwitchText.textContent = 'node.js伺服器測試資料3';
+          break;
+        case 3:
+          pageSwitchText.textContent = 'node.js伺服器測試資料4';
+          break;
+      }
+    }
   </script>
 </html>
