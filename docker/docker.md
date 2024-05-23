@@ -273,7 +273,12 @@ docker start -a <name值>
 
 docker run -i
 
-他允許在 interactive 交互模式下 啟動此容器
+-i 他允許在 interactive 交互模式下 啟動此容器
+
+但是 通常會結合 -t 結合使用
+
+-t 將會分配一個偽 tty (Allocate a pseudo-TTY)
+
 
 
 
