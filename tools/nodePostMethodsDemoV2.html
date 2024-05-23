@@ -240,6 +240,7 @@
       const mainContent = document.querySelector('.main-content');
       const divider = document.getElementById('divider');
       const mainLayout = document.querySelector('.main-layout');
+      const iframeMask = document.getElementById('iframe-mask');
 
       let isResizing = false;
 
@@ -247,6 +248,7 @@
 
       function handleMouseDown(e) {
         isResizing = true;
+        iframeMask.style.pointerEvents = 'auto';
         mainLayout.addEventListener('mouseup', handleMouseUp);
         mainLayout.addEventListener('mousemove', handleMouseMove);
       }
@@ -263,6 +265,7 @@
 
       function handleMouseUp() {
         isResizing = false;
+        iframeMask.style.pointerEvents = 'none';
         mainLayout.removeEventListener('mouseup', handleMouseUp);
         mainLayout.removeEventListener('mousemove', handleMouseMove);
       }
