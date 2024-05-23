@@ -233,10 +233,10 @@
                   id="logFormHttpMethod"
                   class="httpMethod"
                 >
-                  <option value="GET" data-color="#007bff">GET</option>
-                  <option value="POST" data-color="#28a745">POST</option>
-                  <option value="DELETE" data-color="#dc3545">DELETE</option>
-                  <option value="PUT" data-color="#ffc107">PUT</option>
+                  <option value="GET" data-color="#0062CC">GET</option>
+                  <option value="POST" data-color="#208637">POST</option>
+                  <option value="DELETE" data-color="#A51D2A">DELETE</option>
+                  <option value="PUT" data-color="#967000">PUT</option>
                 </select>
                 <input
                   type="text"
@@ -249,6 +249,28 @@
               </div>
             </form>
           </div>
+          <form id="postForm">
+            <div>POST 目標 API</div>
+            <input
+              type="text"
+              id="postUrl"
+              name="postUrl"
+              placeholder="Enter POST URL"
+              value="http://localhost:3002/tuku_draw/tukuDraw"
+            />
+            <div>請求體 json格式</div>
+            <textarea id="postData" name="postData" rows="1" cols="1">
+{
+  "imageFile": "123",
+  "settings": []
+}
+        </textarea
+            >
+            <div class="button-group">
+              <button type="button" id="formatButton">Format JSON</button>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
         </div>
         <div class="divider" id="divider"></div>
         <div class="main-content">
@@ -328,6 +350,23 @@
     </div>
   </body>
   <script>
+    //更改GET方法顏色
+    const methodSelects = document.querySelectorAll('.httpMethod');
+
+    const updateSelectColor = (selectElement) => {
+      const selectedOption = selectElement.options[selectElement.selectedIndex];
+      const color = selectedOption.getAttribute('data-color');
+      selectElement.style.backgroundColor = color;
+    };
+
+    // 初始化每个 select 的背景色，并添加事件监听器
+    methodSelects.forEach((selectElement) => {
+      updateSelectColor(selectElement);
+      selectElement.addEventListener('change', () =>
+        updateSelectColor(selectElement)
+      );
+    });
+
     // 中間左右調整bar
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
@@ -433,5 +472,72 @@
           break;
       }
     }
+
+    //第一個 logForm
+    document
+      .getElementById('logForm')
+      .addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const postUrl = document.getElementById('logFormUrl').value.trim();
+
+        const httpMethod = document.getElementById('logFormHttpMethod').value;
+
+        fetch(postUrl, {
+          method: httpMethod,
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.text();
+          })
+          .then((data) => {
+            const iframe = document.querySelector(
+              'iframe[name="responseFrame"]'
+            );
+            const blob = new Blob([data], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            iframe.src = url;
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+
+    //POST請求
+    const form = document.getElementById('postForm');
+    const urlInput = document.getElementById('postUrl');
+    const textArea = document.getElementById('postData');
+    const formatButton = document.getElementById('formatButton');
+
+    formatButton.addEventListener('click', function () {
+      const textAreaJsonData = JSON.parse(textArea.value.trim());
+      textArea.value = JSON.stringify(textAreaJsonData, null, 2);
+    });
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const textAreaJsonData = JSON.parse(textArea.value.trim());
+      const postUrl = urlInput.value.trim();
+
+      fetch(postUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(textAreaJsonData),
+      })
+        .then((response) => response.blob())
+        .then((blob) => {
+          const imageUrl = URL.createObjectURL(blob);
+          const iframe = document.querySelector('iframe[name="responseFrame"]');
+          iframe.src = imageUrl;
+          console.log('Success:', imageUrl);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    });
   </script>
 </html>
