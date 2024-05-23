@@ -35,12 +35,10 @@
       }
       .sidebar {
         background-color: #181a1b;
-        padding: 10px;
+        padding: 5px;
         display: flex;
         flex-direction: column;
         overflow-y: auto;
-        width: 30%; /* 初始宽度 */
-        min-width: 200px; /* 最小宽度 */
       }
       .form-section form {
         display: flex;
@@ -53,6 +51,11 @@
       .form-section {
         margin-bottom: 10px;
       }
+      .form-section-title {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
       .form-section select,
       .form-section input[type='text'],
       .form-section input[type='submit'] {
@@ -63,18 +66,16 @@
       .form-row input[type='text'] {
         flex: 1;
       }
+      .divider {
+        width: 6px;
+        cursor: ew-resize;
+        background-color: #ccc;
+      }
       .main-content {
         flex: 1;
         display: flex;
         flex-direction: column;
-        position: relative;
       }
-      .divider {
-        width: 16px;
-        cursor: ew-resize;
-        background-color: #ccc;
-      }
-
       #postForm {
         display: flex;
         flex-direction: column;
@@ -84,7 +85,6 @@
       }
       #postUrl,
       #postData {
-        width: calc(100% - 10px);
         margin-bottom: 10px;
         padding: 5px;
         border: none;
@@ -109,11 +109,21 @@
       .iframe-container {
         flex: 1;
         background-color: #202325;
+        position: relative;
       }
       #responseFrame {
         width: 100%;
         height: 100%;
         border: none;
+      }
+      #iframe-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        z-index: 9999;
       }
     </style>
   </head>
@@ -121,6 +131,7 @@
     <div class="main-layout">
       <div class="sidebar">
         <div class="form-section">
+          <div class="form-section-title">demo</div>
           <form id="logForm">
             <div class="form-row">
               <select
@@ -204,56 +215,7 @@
             value=""
           />
           <div>請求體 json格式</div>
-          <textarea
-            id="postData"
-            name="postData"
-            rows="10"
-            cols="80"
-          >
-          {
-            "imageFile": "",
-            "settings": [
-              {
-                "box": {
-                  "type_format": 1,
-                  "text": "",
-                  "id": 11776,
-                  "sel_id": 118,
-                  "index": 1,
-                  "type": "text",
-                  "left": 28,
-                  "top": 220,
-                  "width": 764,
-                  "height": 67,
-                  "content": "100",
-                  "rotate": 0,
-                  "pick": 1,
-                  "number": 1,
-                  "type_index": "",
-                  "color": "rgba(0,0,0,1)",
-                  "angle": 0,
-                  "stops": [],
-                  "shadowX": 0,
-                  "shadowY": 0,
-                  "shadowAmbiguity": 0,
-                  "shadowColor": "transparent",
-                  "fontSize": 50,
-                  "weight": 0,
-                  "isFontWeight": false,
-                  "style": "normal",
-                  "isItalic": false,
-                  "decoration": "none",
-                  "isUnderLine": false,
-                  "fontFamily": 59,
-                  "strokeWidth": 0,
-                  "strokeColor": "transparent"
-                },
-              },
-            ],
-            "fontData": []
-          }
-                      
-        </textarea>
+          <textarea id="postData" name="postData" rows="1" cols="1"> </textarea>
           <div class="button-group">
             <button type="button" id="formatButton">Format JSON</button>
             <button type="submit">Submit</button>
@@ -268,11 +230,13 @@
             name="responseFrame"
             src="about:blank"
           ></iframe>
+          <div id="iframe-mask"></div>
         </div>
       </div>
     </div>
     <script>
-              const sidebar = document.querySelector('.sidebar');
+      // 中間左右調整bar
+      const sidebar = document.querySelector('.sidebar');
       const mainContent = document.querySelector('.main-content');
       const divider = document.getElementById('divider');
       const mainLayout = document.querySelector('.main-layout');
@@ -283,8 +247,8 @@
 
       function handleMouseDown(e) {
         isResizing = true;
-        mainLayout.addEventListener('mousemove', handleMouseMove);
         mainLayout.addEventListener('mouseup', handleMouseUp);
+        mainLayout.addEventListener('mousemove', handleMouseMove);
       }
 
       function handleMouseMove(e) {
@@ -299,10 +263,9 @@
 
       function handleMouseUp() {
         isResizing = false;
-        mainLayout.removeEventListener('mousemove', handleMouseMove);
         mainLayout.removeEventListener('mouseup', handleMouseUp);
+        mainLayout.removeEventListener('mousemove', handleMouseMove);
       }
-
 
       //更改GET方法顏色
       const methodSelects = document.querySelectorAll('.httpMethod');
