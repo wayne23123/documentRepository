@@ -35,6 +35,7 @@
       }
       .sidebar {
         background-color: #181a1b;
+        color: #fff;
         padding: 5px;
         display: flex;
         flex-direction: column;
@@ -56,20 +57,29 @@
         justify-content: flex-end;
         margin-bottom: 10px;
       }
+      .httpMethod {
+        color: #fff;
+      }
       .form-section select,
       .form-section input[type='text'],
       .form-section input[type='submit'] {
         padding: 8px;
-        border: 1px solid #ccc;
+        border: 1px solid #3e4446;
         border-radius: 4px;
       }
       .form-row input[type='text'] {
+        background-color: #121212;
+        color: #fff;
         flex: 1;
+      }
+      .form-row input[type='submit'] {
+        background-color: #6b6b6b;
+        color: #fff;
       }
       .divider {
         width: 6px;
         cursor: ew-resize;
-        background-color: #ccc;
+        background-color: #35393b;
       }
       .main-content {
         flex: 1;
@@ -102,8 +112,8 @@
         flex: 1;
         margin-right: 5px;
         padding: 5px;
-        background-color: #6b6b6b;
-        color: #ffffff;
+        background-color: #51575b;
+        color: #fff;
         cursor: pointer;
       }
       .iframe-container {
@@ -125,6 +135,21 @@
         background: rgba(0, 0, 0, 0);
         z-index: 9999;
       }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #444;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #666;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #666;
+      }
     </style>
   </head>
   <body>
@@ -139,11 +164,11 @@
                 id="logFormHttpMethod"
                 class="httpMethod"
               >
-                <option value="GET" data-color="#007bff">GET</option>
-                <option value="POST" data-color="#28a745">POST</option>
-                <option value="DELETE" data-color="#dc3545">DELETE</option>
-                <option value="PUT" data-color="#ffc107">PUT</option>
-              </select>
+              <option value="GET" data-color="#0062CC">GET</option>
+              <option value="POST" data-color="#208637">POST</option>
+              <option value="DELETE" data-color="#A51D2A">DELETE</option>
+              <option value="PUT" data-color="#967000">PUT</option>
+            </select>
               <input
                 type="text"
                 id="logFormUrl"
@@ -163,11 +188,11 @@
                 id="fontListFormHttpMethod"
                 class="httpMethod"
               >
-                <option value="GET" data-color="#007bff">GET</option>
-                <option value="POST" data-color="#28a745">POST</option>
-                <option value="DELETE" data-color="#dc3545">DELETE</option>
-                <option value="PUT" data-color="#ffc107">PUT</option>
-              </select>
+              <option value="GET" data-color="#0062CC">GET</option>
+              <option value="POST" data-color="#208637">POST</option>
+              <option value="DELETE" data-color="#A51D2A">DELETE</option>
+              <option value="PUT" data-color="#967000">PUT</option>
+            </select>
               <input
                 type="text"
                 id="fontListFormUrl"
@@ -187,13 +212,13 @@
                 id="deleteAllFormHttpMethod"
                 class="httpMethod"
               >
-                <option value="GET" data-color="#007bff">GET</option>
-                <option value="POST" data-color="#28a745">POST</option>
-                <option value="DELETE" selected data-color="#dc3545">
-                  DELETE
-                </option>
-                <option value="PUT" data-color="#ffc107">PUT</option>
-              </select>
+              <option value="GET" data-color="#0062CC">GET</option>
+                  <option value="POST" data-color="#208637">POST</option>
+                  <option value="DELETE" selected data-color="#A51D2A">
+                    DELETE
+                  </option>
+                  <option value="PUT" data-color="#967000">PUT</option>
+                </select>
               <input
                 type="text"
                 id="deleteAllFormHttpUrl"
