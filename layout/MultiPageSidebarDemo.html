@@ -125,6 +125,7 @@
         height: 100%;
         background: rgba(0, 0, 0, 0);
         z-index: 9999;
+        pointer-events: none; 
       }
       .sidebar-toggle-button {
         position: fixed;
@@ -188,6 +189,21 @@
       }
       .page.active {
         display: flex;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #444;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #666;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #666;
       }
     </style>
   </head>
@@ -288,6 +304,42 @@
     </div>
   </body>
   <script>
+
+         // 中間左右調整bar
+         const sidebar = document.querySelector('.sidebar');
+      const mainContent = document.querySelector('.main-content');
+      const divider = document.getElementById('divider');
+      const mainLayout = document.querySelector('.main-layout');
+      const iframeMask = document.getElementById('iframe-mask');
+
+      let isResizing = false;
+
+      divider.addEventListener('mousedown', handleMouseDown);
+
+      function handleMouseDown(e) {
+        isResizing = true;
+        iframeMask.style.pointerEvents = 'auto'; // Enable pointer events on the mask
+        mainLayout.addEventListener('mouseup', handleMouseUp);
+        mainLayout.addEventListener('mousemove', handleMouseMove);
+      }
+
+      function handleMouseMove(e) {
+        if (isResizing) {
+          const sidebarWidth = e.clientX - sidebar.getBoundingClientRect().left;
+          const mainContentWidth =
+            window.innerWidth - sidebarWidth - divider.offsetWidth;
+          sidebar.style.width = `${sidebarWidth}px`;
+          mainContent.style.width = `${mainContentWidth}px`;
+        }
+      }
+
+      function handleMouseUp() {
+        isResizing = false;
+        iframeMask.style.pointerEvents = 'none'; // Disable pointer events on the mask
+        mainLayout.removeEventListener('mouseup', handleMouseUp);
+        mainLayout.removeEventListener('mousemove', handleMouseMove);
+      }
+
   let currentPageIndex = 0; // 当前页面索引
 
 
