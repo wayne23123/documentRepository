@@ -297,4 +297,9 @@ docker start <name值>
 會讓 docker 在默認情況下以分離模式啟動(不能與容器通信)
 
 
+# 指令_docker start -a
+
+docker start -a <name值>
+
+讓 docker 在attach(附加模式)模式啟動
 
