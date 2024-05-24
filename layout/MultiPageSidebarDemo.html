@@ -405,9 +405,9 @@
       mainLayout.removeEventListener('mousemove', handleMouseMove);
     }
 
-    let currentPageIndex = 1; // 当前页面索引
 
     // 切换到指定页面
+    let currentPageIndex = 1;
     function switchPage(pageId, pageIndex) {
       const pages = document.querySelectorAll('.page');
       pages.forEach((page) => {
@@ -418,22 +418,21 @@
         }
       });
       const buttons = document.querySelectorAll('.page-switch-button');
-      console.log('buttons',buttons)
       buttons.forEach((button, index) => {
         if (index === pageIndex) {
           button.classList.add('active');
-          console.log(2)
         } else {
           button.classList.remove('active');
         }
       });
-      currentPageIndex = pageIndex; // 更新当前页面索引
+      currentPageIndex = pageIndex;
       updatePageSwitchText();
+      toggleSidebar();
     }
 
     function reSwitchPage() {
       const pages = document.querySelectorAll('.page');
-      currentPageIndex = (currentPageIndex + 1) % pages.length; // 循环切换页面
+      currentPageIndex = (currentPageIndex + 1) % pages.length;
       updatePageVisibility(pages);
       updatePageSwitchText();
     }
