@@ -10,26 +10,57 @@
         padding: 0;
         margin: 0;
       }
-
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
       .container {
         display: flex;
         height: 100vh;
+        width: 100vw;
       }
 
       .left {
-        width: 30%;
-        overflow: auto;
         background-color: #181a1b;
         color: #fff;
-        resize: horizontal;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        min-width: 50px; /* Add a minimum width to ensure the left side does not disappear */
       }
 
       .right {
-        width: 70%;
-        overflow: auto;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         background-color: #181a1b;
         color: #fff;
-        resize: horizontal;
+      }
+
+      .iframe-container {
+        flex: 1;
+        background-color: #202325;
+        position: relative;
+      }
+
+      #responseFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      #iframe-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        z-index: 9999;
+        pointer-events: none;
       }
 
       .divider {
@@ -37,6 +68,7 @@
         cursor: ew-resize;
         background-color: #808080;
         z-index: 2;
+        min-width: 8px; /* Ensure divider does not shrink below 8px */
       }
     </style>
   </head>
@@ -44,12 +76,22 @@
     <div class="container">
       <div class="left">
         <!-- Left Content -->
-        <p>This is the left content.</p>
+        <p>
+          This is the left content.This is the left content.This is the left
+          content.This is the left content.
+        </p>
       </div>
       <div class="divider" id="divider"></div>
       <div class="right">
         <!-- Right Content -->
-        <p>This is the right content.</p>
+        <div class="iframe-container">
+          <iframe
+            id="responseFrame"
+            name="responseFrame"
+            src="about:blank"
+          ></iframe>
+          <div id="iframe-mask"></div>
+        </div>
       </div>
     </div>
     <script>
@@ -57,27 +99,40 @@
       const left = document.querySelector('.left');
       const right = document.querySelector('.right');
       const container = document.querySelector('.container');
+      const iframeMask = document.getElementById('iframe-mask');
 
       let isResizing = false;
 
       divider.addEventListener('mousedown', (e) => {
         isResizing = true;
+        iframeMask.style.pointerEvents = 'auto';
+
         document.addEventListener('mousemove', handleMouseMove);
         document.addEventListener('mouseup', () => {
           isResizing = false;
+          iframeMask.style.pointerEvents = 'none';
+
           document.removeEventListener('mousemove', handleMouseMove);
         });
       });
 
       function handleMouseMove(e) {
         if (isResizing) {
-          const leftWidth = e.clientX - container.offsetLeft;
+          const leftWidth = Math.max(50, e.clientX - container.offsetLeft); // Ensure left has a minimum width
           const containerWidth = container.offsetWidth;
           const rightWidth = containerWidth - leftWidth;
           left.style.width = `${leftWidth}px`;
           right.style.width = `${rightWidth}px`;
         }
       }
+
+      // Handle window resize to adjust layout
+      window.addEventListener('resize', () => {
+        const containerWidth = container.offsetWidth;
+        const leftWidth = left.offsetWidth;
+        const rightWidth = containerWidth - leftWidth;
+        right.style.width = `${rightWidth}px`;
+      });
     </script>
   </body>
 </html>

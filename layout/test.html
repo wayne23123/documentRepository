@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resizable Layout</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+
+      .left {
+        width: 30%;
+        overflow: auto;
+        background-color: #181a1b;
+        color: #fff;
+        resize: horizontal;
+      }
+
+      .right {
+        width: 70%;
+        overflow: auto;
+        background-color: #181a1b;
+        color: #fff;
+        resize: horizontal;
+      }
+
+      .divider {
+        width: 8px;
+        cursor: ew-resize;
+        background-color: #808080;
+        z-index: 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <!-- Left Content -->
+        <p>This is the left content.</p>
+      </div>
+      <div class="divider" id="divider"></div>
+      <div class="right">
+        <!-- Right Content -->
+        <p>This is the right content.</p>
+      </div>
+    </div>
+    <script>
+      const divider = document.getElementById('divider');
+      const left = document.querySelector('.left');
+      const right = document.querySelector('.right');
+      const container = document.querySelector('.container');
+
+      let isResizing = false;
+
+      divider.addEventListener('mousedown', (e) => {
+        isResizing = true;
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', () => {
+          isResizing = false;
+          document.removeEventListener('mousemove', handleMouseMove);
+        });
+      });
+
+      function handleMouseMove(e) {
+        if (isResizing) {
+          const leftWidth = e.clientX - container.offsetLeft;
+          const containerWidth = container.offsetWidth;
+          const rightWidth = containerWidth - leftWidth;
+          left.style.width = `${leftWidth}px`;
+          right.style.width = `${rightWidth}px`;
+        }
+      }
+    </script>
+  </body>
+</html>
