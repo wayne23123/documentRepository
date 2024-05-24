@@ -268,3 +268,29 @@ docker logs -f <name值>
 
 docker start -a <name值>
 
+
+# 指令
+
+docker run -i
+
+-i 他允許在 interactive 交互模式下 啟動此容器
+
+但是 通常會結合 -t 結合使用
+
+-t 將會分配一個偽 tty (Allocate a pseudo-TTY)
+
+# -i 結合 -t
+
+將能夠輸入一些內容
+
+這樣容器將偵聽我們的輸入
+
+並且我們還將獲得容器所公開的終端
+
+該終端實際上是我們輸入的設備
+
+
+
+
+
+
