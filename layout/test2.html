@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MultiPageSidebarDemo</title>
+    <meta name="author" content="Wayne Lu 2024" />
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+      button {
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .main-layout {
+        display: flex;
+        flex: 1;
+      }
+      .sidebar {
+        background-color: #181a1b;
+        color: #fff;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        min-width: 100px; /* Add a minimum width to ensure the sidebar does not disappear */
+      }
+      .form-section form {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-row {
+        display: flex;
+        align-items: center;
+      }
+      .form-section {
+        margin-bottom: 10px;
+      }
+      .form-section-title {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+      .httpMethod {
+        color: #fff;
+      }
+      .form-section select,
+      .form-section input[type='text'],
+      .form-section input[type='submit'] {
+        padding: 8px;
+        border: 1px solid #3e4446;
+        border-radius: 4px;
+      }
+      .form-row input[type='text'] {
+        background-color: #121212;
+        color: #fff;
+        flex: 1;
+      }
+      .form-row input[type='submit'] {
+        background-color: #6b6b6b;
+        color: #fff;
+      }
+      .divider {
+        width: 6px;
+        cursor: ew-resize;
+        background-color: #35393b;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      #postForm {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: #181a1b;
+        padding: 10px;
+      }
+      #postUrl,
+      #postData {
+        margin-bottom: 10px;
+        padding: 5px;
+        border: none;
+        background-color: #121212;
+        color: #fff;
+      }
+      #postData {
+        flex: 1;
+        resize: none;
+      }
+      .button-group {
+        display: flex;
+      }
+      .button-group button {
+        flex: 1;
+        margin-right: 5px;
+        padding: 5px;
+        background-color: #51575b;
+        color: #fff;
+        cursor: pointer;
+      }
+      .iframe-container {
+        flex: 1;
+        background-color: #202325;
+        position: relative;
+      }
+      #responseFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      #iframe-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        z-index: 9999;
+        pointer-events: none;
+      }
+      .sidebar-toggle-button {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #35393b;
+        cursor: pointer;
+        transition: all 0.6s ease;
+      }
+      .sidebar-toggle-button:hover {
+        background-color: #535a5f;
+      }
+      .sidebar-toggle-button.hidden {
+        transform: translateX(-200%);
+      }
+      .page-switch-button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+      .page-switch-button.active {
+        background-color: #0056b3;
+      }
+      .sidebar-layout {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #181a1b;
+        height: 100vh;
+        box-shadow: 0 0 20px rgba(99, 99, 99, 0.4);
+        transition: all 0.6s ease;
+      }
+      .sidebar-container {
+        padding: 30px;
+      }
+      .sidebar-layout.hidden {
+        transform: translateX(-200%);
+      }
+      .toggle-button-container {
+        position: relative;
+      }
+      .toggle-button {
+        position: absolute;
+        padding: 10px;
+        top: 10px;
+        left: 10px;
+        border-radius: 50%;
+        background-color: #35393b;
+        cursor: pointer;
+        transition: all 0.8s ease;
+      }
+      .toggle-button:hover {
+        background-color: #535a5f;
+      }
+      .toggle-button-text {
+        color: white;
+        font-size: 18px;
+      }
+      .page {
+        display: none;
+        flex: 1;
+      }
+      .page.active {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-layout">
+      <div class="page page-one active" id="page-one">
+        <div class="sidebar">
+          <!-- Left Content -->
+          <p>
+            This is the left content. This is the left content. This is the left
+            content. This is the left content.
+          </p>
+        </div>
+        <div class="divider" id="divider"></div>
+        <div class="main-content">
+          <!-- Right Content -->
+          <div class="iframe-container">
+            <iframe
+              id="responseFrame"
+              name="responseFrame"
+              src="about:blank"
+            ></iframe>
+            <div id="iframe-mask"></div>
+          </div>
+        </div>
+      </div>
+      <div class="page page-two" id="page-two">
+        <!-- Content for page two -->
+      </div>
+      <div class="page page-three" id="page-three">
+        <!-- Content for page three -->
+      </div>
+      <div class="page page-four" id="page-four">
+        <!-- Content for page four -->
+      </div>
+    </div>
+    <div class="sidebar-layout hidden" id="sidebar">
+      <div class="toggle-button-container">
+        <div class="toggle-button" onclick="toggleSidebar()">
+          <div class="toggle-button-text">⬅</div>
+        </div>
+      </div>
+      <div class="sidebar-container">
+        <br />
+        <br />
+        <hr />
+        <br />
+        <div class="page-switch-button" onclick="switchPage('page-one', 0)">
+          <span>node.js伺服器測試資料1</span>
+        </div>
+        <br />
+        <div class="page-switch-button" onclick="switchPage('page-two', 1)">
+          <span>node.js伺服器測試資料2</span>
+        </div>
+        <br />
+        <div class="page-switch-button" onclick="switchPage('page-three', 2)">
+          <span>node.js伺服器測試資料3</span>
+        </div>
+        <br />
+        <div class="page-switch-button" onclick="switchPage('page-four', 3)">
+          <span>node.js伺服器測試資料4</span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="sidebar-toggle-button"
+      id="sidebarToggleButton"
+      onclick="toggleSidebar()"
+    >
+      <div class="toggle-button-text">⋮☰</div>
+    </div>
+    <script>
+      let currentPageIndex = 0; // 当前页面索引
+
+      // 切换到指定页面
+      function switchPage(pageId, pageIndex) {
+        const pages = document.querySelectorAll('.page');
+        const buttons = document.querySelectorAll('.page-switch-button');
+        
+        pages.forEach((page) => {
+          if (page.id === pageId) {
+            page.classList.add('active');
+          } else {
+            page.classList.remove('active');
+          }
+        });
+
+        buttons.forEach((button, index) => {
+          if (index === pageIndex) {
+            button.classList.add('active');
+          } else {
+            button.classList.remove('active');
+          }
+        });
+        
+        currentPageIndex = pageIndex; // 更新当前页面索引
+        updatePageSwitchText(); // 更新页面切换按钮的文本
+      }
+
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggleButton = document.getElementById(
+          'sidebarToggleButton'
+        );
+        sidebar.classList.toggle('hidden');
+        sidebarToggleButton.classList.toggle('hidden');
+      }
+
+      // 更新页面切换按钮的文本
+      function updatePageSwitchText() {
+        const pageSwitchText = document.getElementById('pageSwitchText');
+        switch (currentPageIndex) {
+          case 0:
+            pageSwitchText.textContent = 'node.js伺服器測試資料1';
+            break;
+          case 1:
+            pageSwitchText.textContent = 'node.js伺服器測試資料2';
+            break;
+          case 2:
+            pageSwitchText.textContent = 'node.js伺服器測試資料3';
+            break;
+          case 3:
+            pageSwitchText.textContent = 'node.js伺服器測試資料4';
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -159,6 +159,9 @@
         color: white;
         cursor: pointer;
       }
+      .page-switch-button.active {
+        background-color: #004691;
+      }
       .sidebar-layout {
         position: fixed;
         top: 0;
@@ -323,19 +326,19 @@
             <span id="pageSwitchText">node.js伺服器測試資料2</span>
           </div>
           <br />
-          <div class="page-switch-button" onclick="switchPage('page-one')">
+          <div class="page-switch-button active" onclick="switchPage('page-one',1)">
             <span id="pageSwitchText">node.js伺服器測試資料1</span>
           </div>
           <br />
-          <div class="page-switch-button" onclick="switchPage('page-two')">
+          <div class="page-switch-button" onclick="switchPage('page-two',2)">
             <span id="pageSwitchText">node.js伺服器測試資料2</span>
           </div>
           <br />
-          <div class="page-switch-button" onclick="switchPage('page-three')">
+          <div class="page-switch-button" onclick="switchPage('page-three',3)">
             <span id="pageSwitchText">node.js伺服器測試資料3</span>
           </div>
           <br />
-          <div class="page-switch-button" onclick="switchPage('page-four')">
+          <div class="page-switch-button" onclick="switchPage('page-four',4)">
             <span id="pageSwitchText">node.js伺服器測試資料4</span>
           </div>
         </div>
@@ -402,10 +405,10 @@
       mainLayout.removeEventListener('mousemove', handleMouseMove);
     }
 
-    let currentPageIndex = 0; // 当前页面索引
+    let currentPageIndex = 1; // 当前页面索引
 
     // 切换到指定页面
-    function switchPage(pageId) {
+    function switchPage(pageId, pageIndex) {
       const pages = document.querySelectorAll('.page');
       pages.forEach((page) => {
         if (page.id === pageId) {
@@ -414,6 +417,18 @@
           page.classList.remove('active');
         }
       });
+      const buttons = document.querySelectorAll('.page-switch-button');
+      console.log('buttons',buttons)
+      buttons.forEach((button, index) => {
+        if (index === pageIndex) {
+          button.classList.add('active');
+          console.log(2)
+        } else {
+          button.classList.remove('active');
+        }
+      });
+      currentPageIndex = pageIndex; // 更新当前页面索引
+      updatePageSwitchText();
     }
 
     function reSwitchPage() {

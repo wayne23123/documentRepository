@@ -3,81 +3,409 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Resizable Layout</title>
+    <title>MultiPageSidebarDemo</title>
+    <meta name="author" content="Wayne Lu 2024" />
     <style>
       * {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
       }
-
-      .container {
+      body {
         display: flex;
         height: 100vh;
+        width: 100vw;
+        overflow: hidden;
       }
-
-      .left {
-        width: 30%;
-        overflow: auto;
+      button {
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .main-layout {
+        display: flex;
+        flex: 1;
+      }
+      .sidebar {
         background-color: #181a1b;
         color: #fff;
-        resize: horizontal;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
       }
-
-      .right {
-        width: 70%;
-        overflow: auto;
-        background-color: #181a1b;
+      .form-section form {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-row {
+        display: flex;
+        align-items: center;
+      }
+      .form-section {
+        margin-bottom: 10px;
+      }
+      .form-section-title {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+      .httpMethod {
         color: #fff;
-        resize: horizontal;
       }
-
+      .form-section select,
+      .form-section input[type='text'],
+      .form-section input[type='submit'] {
+        padding: 8px;
+        border: 1px solid #3e4446;
+        border-radius: 4px;
+      }
+      .form-row input[type='text'] {
+        background-color: #121212;
+        color: #fff;
+        flex: 1;
+      }
+      .form-row input[type='submit'] {
+        background-color: #6b6b6b;
+        color: #fff;
+      }
       .divider {
-        width: 8px;
+        width: 6px;
         cursor: ew-resize;
-        background-color: #808080;
-        z-index: 2;
+        background-color: #35393b;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      #postForm {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: #181a1b;
+        padding: 10px;
+      }
+      #postUrl,
+      #postData {
+        margin-bottom: 10px;
+        padding: 5px;
+        border: none;
+        background-color: #121212;
+        color: #fff;
+      }
+      #postData {
+        flex: 1;
+        resize: none;
+      }
+      .button-group {
+        display: flex;
+      }
+      .button-group button {
+        flex: 1;
+        margin-right: 5px;
+        padding: 5px;
+        background-color: #51575b;
+        color: #fff;
+        cursor: pointer;
+      }
+      .iframe-container {
+        flex: 1;
+        background-color: #202325;
+        position: relative;
+      }
+      #responseFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      #iframe-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        z-index: 9999;
+        pointer-events: none;
+      }
+      .sidebar-toggle-button {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #35393b;
+        cursor: pointer;
+        transition: all 0.6s ease;
+      }
+      .sidebar-toggle-button:hover {
+        background-color: #535a5f;
+      }
+      .sidebar-toggle-button.hidden {
+        transform: translateX(-200%);
+      }
+      .page-switch-button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+      .page-switch-button.active {
+        background-color: #000000;
+      }
+      .sidebar-layout {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #181a1b;
+        height: 100vh;
+        box-shadow: 0 0 20px rgba(99, 99, 99, 0.4);
+        transition: all 0.6s ease;
+      }
+      .sidebar-container {
+        padding: 30px;
+      }
+      .sidebar-layout.hidden {
+        transform: translateX(-200%);
+      }
+      .toggle-button-container {
+        position: relative;
+      }
+      .toggle-button {
+        position: absolute;
+        padding: 10px;
+        top: 10px;
+        left: 10px;
+        border-radius: 50%;
+        background-color: #35393b;
+        cursor: pointer;
+        transition: all 0.8s ease;
+      }
+      .toggle-button:hover {
+        background-color: #535a5f;
+      }
+      .toggle-button-text {
+        color: white;
+        font-size: 18px;
+      }
+      .page {
+        display: none;
+        flex: 1;
+      }
+      .page.active {
+        display: flex;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #444;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #666;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #666;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="left">
-        <!-- Left Content -->
-        <p>This is the left content.</p>
+    <div class="main-layout">
+      <div class="page page-one active" id="page-one">
+        <div class="sidebar">
+          <div class="form-section">
+            <div class="form-section-title">
+              MultiPageSidebarDemo By Wayne Lu 2024
+            </div>
+            <form id="logForm">
+              <div class="form-row">
+                <select
+                  name="httpMethod"
+                  id="logFormHttpMethod"
+                  class="httpMethod"
+                >
+                  <option value="GET" data-color="#0062CC">GET</option>
+                  <option value="POST" data-color="#208637">POST</option>
+                  <option value="DELETE" data-color="#A51D2A">DELETE</option>
+                  <option value="PUT" data-color="#967000">PUT</option>
+                </select>
+                <input
+                  type="text"
+                  id="logFormUrl"
+                  name="url"
+                  placeholder="Enter URL"
+                  value=""
+                />
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+          <form id="postForm">
+            <div>POST 目標 API</div>
+            <input
+              type="text"
+              id="postUrl"
+              name="postUrl"
+              placeholder="Enter POST URL"
+              value="http://localhost:3002/tuku_draw/tukuDraw"
+            />
+            <div>請求體 json格式</div>
+            <textarea id="postData" name="postData" rows="1" cols="1">
+{
+  "imageFile": "123",
+  "settings": []
+}
+        </textarea
+            >
+            <div class="button-group">
+              <button type="button" id="formatButton">Format JSON</button>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="divider" id="divider"></div>
+        <div class="main-content">
+          <div class="iframe-container">
+            <iframe
+              id="responseFrame"
+              name="responseFrame"
+              src="about:blank"
+            ></iframe>
+            <div id="iframe-mask"></div>
+          </div>
+        </div>
       </div>
-      <div class="divider" id="divider"></div>
-      <div class="right">
-        <!-- Right Content -->
-        <p>This is the right content.</p>
+      <div
+        class="page page-two"
+        style="background-color: #202325"
+        id="page-two"
+      >
+        <h1 style="margin: auto">This is Page Two</h1>
+      </div>
+
+      <div
+        class="page page-three"
+        style="background-color: #202325"
+        id="page-three"
+      >
+        <h1 style="margin: auto">This is Page Three</h1>
+      </div>
+
+      <div
+        class="page page-four"
+        style="background-color: #202325"
+        id="page-four"
+      >
+        <h1 style="margin: auto">This is Page Four</h1>
+      </div>
+
+      <div class="sidebar-layout hidden" id="sidebar">
+        <div class="toggle-button-container">
+          <div class="toggle-button" onclick="toggleSidebar()">
+            <div class="toggle-button-text">⬅</div>
+          </div>
+        </div>
+        <div class="sidebar-container">
+          <br />
+          <br />
+          <hr />
+          <br />
+          <div class="page-switch-button" onclick="reSwitchPage()">
+            <span id="pageSwitchText">node.js伺服器測試資料2</span>
+          </div>
+          <br />
+          <div class="page-switch-button" onclick="switchPage('page-one')">
+            <span id="pageSwitchText">node.js伺服器測試資料1</span>
+          </div>
+          <br />
+          <div class="page-switch-button active" onclick="switchPage('page-two')">
+            <span id="pageSwitchText">node.js伺服器測試資料2</span>
+          </div>
+          <br />
+          <div class="page-switch-button" onclick="switchPage('page-three')">
+            <span id="pageSwitchText">node.js伺服器測試資料3</span>
+          </div>
+          <br />
+          <div class="page-switch-button" onclick="switchPage('page-four')">
+            <span id="pageSwitchText">node.js伺服器測試資料4</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sidebar-toggle-button"
+        id="sidebarToggleButton"
+        onclick="toggleSidebar()"
+      >
+        <div class="toggle-button-text">⋮☰</div>
       </div>
     </div>
-    <script>
-      const divider = document.getElementById('divider');
-      const left = document.querySelector('.left');
-      const right = document.querySelector('.right');
-      const container = document.querySelector('.container');
-
-      let isResizing = false;
-
-      divider.addEventListener('mousedown', (e) => {
-        isResizing = true;
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', () => {
-          isResizing = false;
-          document.removeEventListener('mousemove', handleMouseMove);
-        });
-      });
-
-      function handleMouseMove(e) {
-        if (isResizing) {
-          const leftWidth = e.clientX - container.offsetLeft;
-          const containerWidth = container.offsetWidth;
-          const rightWidth = containerWidth - leftWidth;
-          left.style.width = `${leftWidth}px`;
-          right.style.width = `${rightWidth}px`;
-        }
-      }
-    </script>
   </body>
+  <script>
+      let currentPageIndex = 0; // 当前页面索引
+
+// 切换到指定页面
+function switchPage(pageId, pageIndex) {
+  const pages = document.querySelectorAll('.page');
+  const buttons = document.querySelectorAll('.page-switch-button');
+  
+  pages.forEach((page) => {
+    if (page.id === pageId) {
+      page.classList.add('active');
+    } else {
+      page.classList.remove('active');
+    }
+  });
+
+  buttons.forEach((button, index) => {
+    if (index === pageIndex) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+  
+  currentPageIndex = pageIndex; // 更新当前页面索引
+  updatePageSwitchText(); // 更新页面切换按钮的文本
+}
+
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggleButton = document.getElementById(
+    'sidebarToggleButton'
+  );
+  sidebar.classList.toggle('hidden');
+  sidebarToggleButton.classList.toggle('hidden');
+}
+
+// 更新页面切换按钮的文本
+function updatePageSwitchText() {
+  const pageSwitchText = document.getElementById('pageSwitchText');
+  switch (currentPageIndex) {
+    case 0:
+      pageSwitchText.textContent = 'node.js伺服器測試資料1';
+      break;
+    case 1:
+      pageSwitchText.textContent = 'node.js伺服器測試資料2';
+      break;
+    case 2:
+      pageSwitchText.textContent = 'node.js伺服器測試資料3';
+      break;
+    case 3:
+      pageSwitchText.textContent = 'node.js伺服器測試資料4';
+      break;
+  }
+}
+  </script>
 </html>
