@@ -290,7 +290,11 @@ docker run -i
 該終端實際上是我們輸入的設備
 
 
+# 指令_docker start
 
+docker start <name值>
+
+會讓 docker 在默認情況下以分離模式啟動(不能與容器通信)
 
 
 
