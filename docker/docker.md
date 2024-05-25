@@ -299,12 +299,24 @@ docker start <name值>
 
 # 指令_docker start -a -i
 
-docker start -a <name值>
+docker start -a -i <name值>
 
 -a 用於偵聽輸出
 
 -i 用於向容器中輸入內容
 
 這裡不用 -t 是因為他被記住了，再我們最初使用 -t 運行容器時
+
+
+# example03小結
+
+docker build .
+
+docker run -it <id值>
+
+docker stop <NAME值>
+
+docker start -a -i <name值>
+
 
 
