@@ -319,4 +319,14 @@ docker stop <NAME值>
 docker start -a -i <name值>
 
 
+# 2_32_指令_docker rm <name值>
+
+docker rm <name值> 刪除容器
+
+docker rm <name值> <name值> <name值> <name值>
+
+
+
+
+
 
