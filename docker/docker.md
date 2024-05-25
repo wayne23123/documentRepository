@@ -335,6 +335,8 @@ docker images 映像列表
 
 docker rmi <id值> 刪除映像
 
+docker rmi <id值> <id值> <id值> <id值>
+
 刪除映像要注意：只有當映像不再被任何容器使用時，
 
 才能刪除映像，(包括停止的容器)
@@ -342,6 +344,15 @@ docker rmi <id值> 刪除映像
 如果有一個已停止的容器，則無法刪除該容器正在使用的圖像，您需要先刪除該容器
 
 docker rm 刪除容器
+
+
+# 2_32_指令_docker image prune
+
+docker image prune 刪除所有未使用的映像
+
+
+
+
 
 
 
