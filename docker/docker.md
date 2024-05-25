@@ -351,7 +351,9 @@ docker rm 刪除容器
 docker image prune 刪除所有未使用的映像
 
 
+# 2_33_指令_docker run --rm <id值>
 
+--rm 無論何時停止此容器，它都會自動刪除
 
 
 
