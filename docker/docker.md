@@ -388,6 +388,15 @@ docker images 映像包含代碼和應用程序環境(檔案很大)
 這就是為什麼映像中的代碼也被鎖定，唯讀容器只能進行更改
 
 
+# 2_34_指令_docker image inspect <id值>
+
+docker image inspect <id值> 查看映像的詳細資料
+
+
+
+
+
+
 
 
 
