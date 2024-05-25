@@ -326,6 +326,11 @@ docker rm <name值> 刪除容器
 docker rm <name值> <name值> <name值> <name值>
 
 
+# 2_32_指令_docker images
+
+docker images 映像列表
+
+
 
 
 
