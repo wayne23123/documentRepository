@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>practice03</title>
+    <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
+    rel="stylesheet"
+  />
+    <style type='text/css'>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: "Noto Sans TC", sans-serif;
+        }
+        html,body {
+            height: 100%;
+        }
+        body {
+            display:flex;
+            align-items: center;
+            background-color: #003;
+        }
+        .wrap {
+            width: 1200px;
+            display: flex;
+            margin: auto;
+        }
+        .item {
+            /* width: 370px; */
+            width: 368px;
+            margin: 15px;
+            text-align: center;
+            background-color: #c4c4c4;
+            border: 1px solid #ccc;
+            transform: translateY(0px);
+            transition: .5s;
+        }
+        .item img {
+            width: 100%;
+            /* 解掉圖片下方距離 */
+            vertical-align: middle;
+        }
+        .item h2 {
+            border-bottom: 1px solid #888;
+            padding-bottom: .3em;
+            margin-bottom: .3em;
+            font-weight: 900;
+            transition: .25s;
+        }
+        .item p {
+            line-height: 1.5;
+            font-weight: 400;
+            transition: .25s;
+        }
+        .item .text {
+            padding: 20px;
+            position: relative;
+        }
+        /* .item .text:before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 0;
+            top: 0;
+            border-top: 50px solid #f00;
+            border-left: 184px solid #0f0;
+            border-right: 184px solid #0f0;
+        } */
+        .item .text:before {
+            content: '';
+            /* 設定定位會自動轉型成block */
+            position: absolute;
+            width: 0;
+            height: 0;
+            left: 0;
+            top: 0;
+            border-top: 50px solid transparent;
+            border-left: 184px solid #c4c4c4;
+            border-right: 184px solid #c4c4c4;
+            transform: translateY(-100%);
+        }
+        .item:hover {
+            transform: translateY(-50px);
+        }
+        .item:hover .text {
+            background-image: linear-gradient(0deg,#FB8076,#FEB85D);
+        }
+        .item:hover .text:before {
+            border-left: 184px solid #FEB85D;
+            border-right: 184px solid #FEB85D;
+        }
+        .item:hover h2 {
+            color: #fff;
+            border-bottom-color: #fff
+        }
+        .item:hover p {
+            color: #fff;           
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="item">
+            <img src="https://picsum.photos/500/400?random=10" alt="">
+            <div class="text">
+                <h2>Wayne</h2>
+                <p>前端工程師</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="https://picsum.photos/500/400?random=20" alt="">
+            <div class="text">
+                <h2>Jack</h2>
+                <p>資工碩士</p>
+            </div>
+        </div>
+        <div class="item">
+            <img src="https://picsum.photos/500/400?random=30" alt="">
+            <div class="text">
+                <h2>Neo</h2>
+                <p>介紹卡片</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
