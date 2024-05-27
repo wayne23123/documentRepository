@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>交錯漂浮版</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+      body {
+        padding: 100px 0;
+        background: linear-gradient(20deg, #3d5493, #1aa2a0) fixed center center /
+          100% 100%;
+      }
+      .wrap {
+        width: 1200px;
+        margin: auto;
+      }
+      .item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 70px;
+        /* background-color: #555; */
+      }
+      .item h2 {
+        font-weight: 900;
+      }
+      .item p {
+        font-weight: 400;
+      }
+      .item .pic {
+        width: 55%;
+        flex-shrink: 0;
+      }
+      .item .pic img {
+        width: 100%;
+        vertical-align: middle;
+      }
+      .item .text {
+        width: 55%;
+        flex-shrink: 0;
+        background-color: #fa8;
+        padding: 50px 30px;
+        box-sizing: border-box;
+        position: relative;
+        z-index: 1;
+      }
+      /* 選到item底下的第一個物件-->pic&&text (只選兒子，不選孫子) */
+      .item > :first-child {
+        margin-right: -10%;
+      }
+      .item:nth-child(1) .text {
+        background-color: rgb(240, 174, 193, .7);
+      }
+      .item:nth-child(2) .text {
+        background-color: rgb(42, 253, 208, .7);
+      }
+      .item:nth-child(3) .text {
+        background-color: rgb(254, 201, 121, .7);
+      }
+      .item:nth-child(4) .text {
+        background-color: rgb(149, 219, 214, .7);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="item">
+        <div class="pic">
+          <img src="https://picsum.photos/600/350?random=10" alt="" />
+        </div>
+        <div class="text">
+          <h2>Wayne</h2>
+          <p>前端工程師</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="text">
+          <h2>Jack</h2>
+          <p>資工碩士</p>
+        </div>
+        <div class="pic">
+          <img src="https://picsum.photos/600/350?random=20" alt="" />
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="pic">
+          <img src="https://picsum.photos/600/350?random=30" alt="" />
+        </div>
+        <div class="text">
+          <h2>Neo</h2>
+          <p>neo</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="text">
+          <h2>test</h2>
+          <p>test</p>
+        </div>
+
+        <div class="pic">
+          <img src="https://picsum.photos/600/350?random=40" alt="" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
