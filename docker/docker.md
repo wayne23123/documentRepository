@@ -290,6 +290,112 @@ docker run -i
 該終端實際上是我們輸入的設備
 
 
+# 指令_docker start
+
+docker start <name值>
+
+會讓 docker 在默認情況下以分離模式啟動(不能與容器通信)
+
+
+# 指令_docker start -a -i
+
+docker start -a -i <name值>
+
+-a 用於偵聽輸出
+
+-i 用於向容器中輸入內容
+
+這裡不用 -t 是因為他被記住了，再我們最初使用 -t 運行容器時
+
+
+# example03小結
+
+docker build .
+
+docker run -it <id值>
+
+docker stop <NAME值>
+
+docker start -a -i <name值>
+
+
+# 2_32_指令_docker rm <name值>
+
+docker rm <name值> 刪除容器
+
+docker rm <name值> <name值> <name值> <name值>
+
+
+# 2_32_指令_docker images
+
+docker images 映像列表
+
+
+# 2_32_指令 docker rmi <id值>
+
+docker rmi <id值> 刪除映像
+
+docker rmi <id值> <id值> <id值> <id值>
+
+刪除映像要注意：只有當映像不再被任何容器使用時，
+
+才能刪除映像，(包括停止的容器)
+
+如果有一個已停止的容器，則無法刪除該容器正在使用的圖像，您需要先刪除該容器
+
+docker rm 刪除容器
+
+
+# 2_32_指令_docker image prune
+
+docker image prune 刪除所有未使用的映像
+
+
+# 2_33_指令_docker run --rm <id值>
+
+--rm 無論何時停止此容器，它都會自動刪除
+
+
+# 2_33_example02小結
+
+docker run -p 3000:80 -d --rm <id值>
+
+docker stop <name值>
+
+docker ps -a
+
+發現已經刪除
+
+使用 --rm 啟動容器很常見，尤其在 node 伺服器
+
+因為通常只有在代碼更改時才會停止容器，
+
+這也代表需要重新構建映像
+
+因此無論如何都要啟動一個新容器
+
+
+# 2_34
+
+docker images 映像包含代碼和應用程序環境(檔案很大)
+
+運行的容器實際上沒有那麼大，它只是一個額外的薄層，基本上是命令層添加在圖像之上，
+
+因此，該圖像代碼在運行容器中使用，它不會再被複製一次
+
+容器在映像上構建，並且基於同一映像運行的多個容器將共享映像內的代碼
+
+這就是為什麼映像中的代碼也被鎖定，唯讀容器只能進行更改
+
+
+# 2_34_指令_docker image inspect <id值>
+
+docker image inspect <id值> 查看映像的詳細資料
+
+
+
+
+
 
 
 
