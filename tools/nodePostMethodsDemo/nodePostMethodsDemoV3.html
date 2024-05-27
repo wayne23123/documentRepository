@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Send POST Request</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+        overflow: hidden;
+      }
+      button {
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+      }
+      .main-layout {
+        display: flex;
+        flex: 1;
+      }
+      .sidebar {
+        background-color: #181a1b;
+        color: #fff;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+      }
+      .form-section form {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-row {
+        display: flex;
+        align-items: center;
+      }
+      .form-section {
+        margin-bottom: 10px;
+      }
+      .form-section-title {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+      }
+      .httpMethod {
+        color: #fff;
+      }
+      .form-section select,
+      .form-section input[type='text'],
+      .form-section input[type='password'],
+      .form-section input[type='submit'] {
+        padding: 8px;
+        border: 1px solid #3e4446;
+        border-radius: 4px;
+      }
+      .form-row input[type='text'],
+      .form-section input[type='password'] {
+        background-color: #121212;
+        color: #fff;
+        flex: 1;
+      }
+      .form-row input[type='submit'] {
+        background-color: #6b6b6b;
+        color: #fff;
+      }
+      .divider {
+        width: 16px;
+        cursor: ew-resize;
+        background-color: #35393b;
+      }
+      .divider:hover {
+        background-color: #758085;
+      }
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .postForm {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        background-color: #181a1b;
+        padding: 10px;
+      }
+      .postUrl,
+      .postData {
+        margin-bottom: 10px;
+        padding: 5px;
+        border: none;
+        background-color: #121212;
+        border: 1px solid #3e4446;
+        color: #fff;
+      }
+      .postData {
+        flex: 1;
+        resize: none;
+      }
+      .button-group {
+        display: flex;
+      }
+      .button-group button {
+        flex: 1;
+        margin-right: 5px;
+        padding: 5px;
+        background-color: #51575b;
+        color: #fff;
+        cursor: pointer;
+      }
+      .iframe-container {
+        flex: 1;
+        background-color: #202325;
+        position: relative;
+      }
+      .responseFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+      .iframe-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0);
+        z-index: 9999;
+        pointer-events: none;
+      }
+      .sidebar-toggle-button {
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #35393b;
+        cursor: pointer;
+        transition: all 0.6s ease;
+      }
+      .sidebar-toggle-button:hover {
+        background-color: #535a5f;
+      }
+      .sidebar-toggle-button.hidden {
+        transform: translateX(-200%);
+      }
+      .page-switch-button {
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+      }
+      .page-switch-button.active {
+        background-color: #004691;
+      }
+      .sidebar-layout {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #181a1b;
+        height: 100vh;
+        box-shadow: 0 0 20px rgba(99, 99, 99, 0.4);
+        transition: all 0.6s ease;
+      }
+      .sidebar-container {
+        padding: 30px;
+      }
+      .sidebar-layout.hidden {
+        transform: translateX(-200%);
+      }
+      .toggle-button-container {
+        position: relative;
+      }
+      .toggle-button {
+        position: absolute;
+        padding: 10px;
+        top: 10px;
+        left: 10px;
+        border-radius: 50%;
+        background-color: #35393b;
+        cursor: pointer;
+        transition: all 0.8s ease;
+      }
+      .toggle-button:hover {
+        background-color: #535a5f;
+      }
+      .toggle-button-text {
+        color: white;
+        font-size: 18px;
+      }
+      .page {
+        display: none;
+        flex: 1;
+      }
+      .page.active {
+        display: flex;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: #444;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #666;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #666;
+      }
+      .pl60 {
+        padding-left: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-layout">
+      <div class="page page-one active" id="page-one">
+        <div class="sidebar">
+          <div class="form-section">
+            <br />
+            <br />
+            <div class="form-section-title">node.js繪圖伺服器demo</div>
+            <form id="logForm">
+              <div class="form-row">
+                <select
+                  name="httpMethod"
+                  id="logFormHttpMethod"
+                  class="httpMethod"
+                >
+                  <option value="GET" data-color="#0062CC">GET</option>
+                  <option value="POST" data-color="#208637">POST</option>
+                  <option value="DELETE" data-color="#A51D2A">DELETE</option>
+                  <option value="PUT" data-color="#967000">PUT</option>
+                </select>
+                <input
+                  type="text"
+                  id="logFormUrl"
+                  name="url"
+                  placeholder="Enter URL"
+                />
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+          <div class="form-section">
+            <form id="fontListForm">
+              <div class="form-row">
+                <select
+                  name="httpMethod"
+                  id="fontListFormHttpMethod"
+                  class="httpMethod"
+                >
+                  <option value="GET" data-color="#0062CC">GET</option>
+                  <option value="POST" data-color="#208637">POST</option>
+                  <option value="DELETE" data-color="#A51D2A">DELETE</option>
+                  <option value="PUT" data-color="#967000">PUT</option>
+                </select>
+                <input
+                  type="text"
+                  id="fontListFormUrl"
+                  name="url"
+                  placeholder="Enter URL"
+                />
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+          <div class="form-section">
+            <form id="deleteAllForm">
+              <div class="form-row">
+                <select
+                  name="httpMethod"
+                  id="deleteAllFormHttpMethod"
+                  class="httpMethod"
+                >
+                  <option value="GET" data-color="#0062CC">GET</option>
+                  <option value="POST" data-color="#208637">POST</option>
+                  <option value="DELETE" selected data-color="#A51D2A">
+                    DELETE
+                  </option>
+                  <option value="PUT" data-color="#967000">PUT</option>
+                </select>
+                <input
+                  type="text"
+                  id="deleteAllFormHttpUrl"
+                  name="url"
+                  placeholder="Enter URL"
+                />
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+          <form id="postForm" class="postForm">
+            <div>POST 目標 API</div>
+            <input
+              type="text"
+              id="postUrl"
+              class="postUrl"
+              name="postUrl"
+              placeholder="Enter POST URL"
+            />
+            <div>請求體 json格式</div>
+            <textarea
+              id="postData"
+              class="postData"
+              name="postData"
+              rows="1"
+              cols="1"
+            >
+{
+  "imageFile": "",
+  "settings": [
+    {
+      "box": {
+        "type_format": 1,
+        "text": "",
+        "index": 1,
+        "type": "text",
+        "left": 28,
+        "top": 220,
+        "width": 764,
+        "height": 67,
+        "content": "test1",
+        "rotate": 0,
+        "pick": 1,
+        "number": 1,
+        "type_index": "",
+        "color": "rgba(0,0,0,1)",
+        "angle": 0,
+        "stops": [],
+        "shadowX": 0,
+        "shadowY": 0,
+        "shadowAmbiguity": 0,
+        "shadowColor": "transparent",
+        "fontSize": 50,
+        "weight": 0,
+        "isFontWeight": false,
+        "style": "normal",
+        "isItalic": false,
+        "decoration": "none",
+        "isUnderLine": false,
+        "fontFamily": 59,
+        "strokeWidth": 0,
+        "strokeColor": "transparent"
+      },
+    }
+  ]
+}
+        </textarea
+            >
+            <div class="button-group">
+              <button type="button" id="formatButton">Format JSON</button>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="divider" id="divider"></div>
+        <div class="main-content">
+          <div class="iframe-container">
+            <iframe
+              id="responseFrame"
+              class="responseFrame"
+              name="responseFrame"
+              src="about:blank"
+            ></iframe>
+            <div id="iframe-mask" class="iframe-mask"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page page-two" id="page-two">
+        <div class="sidebar sidebar2">
+          <div class="form-section">
+            <form id="loginForm" class="pl60">
+              <div class="form-row">
+                <span> 帳號： </span>
+                <input
+                  type="text"
+                  id="loginFormAccount"
+                  name="account"
+                  placeholder="輸入帳號"
+                />
+              </div>
+              <div class="form-row">
+                <span> 密碼： </span>
+                <input
+                  type="password"
+                  id="loginFormPassword"
+                  name="password"
+                  placeholder="輸入密碼"
+                />
+              </div>
+              <input type="submit" value="登入" />
+              <div class="message" id="message"></div>
+            </form>
+          </div>
+          <div class="form-section">
+            <form id="postFormId" class="postForm">
+              <div>目標模板的ID</div>
+              <div class="form-row">
+                <input
+                  type="text"
+                  id="postId"
+                  name="postId"
+                  placeholder="Enter Template ID"
+                />
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+
+          <form id="postForm2" class="postForm">
+            <div>POST 目標 API</div>
+            <input
+              type="text"
+              id="postUrl2"
+              class="postUrl"
+              name="postUrl"
+              placeholder="Enter POST URL"
+            />
+            <div>請求體 json格式</div>
+            <textarea
+              id="postData2"
+              class="postData"
+              name="postData"
+              rows="1"
+              cols="1"
+            >
+{
+  "imageFile": "",
+  "settings": [
+    {
+      "box": {
+        "type_format": 1,
+        "text": "",
+        "index": 1,
+        "type": "text",
+        "left": 28,
+        "top": 220,
+        "width": 764,
+        "height": 67,
+        "content": "test01",
+        "rotate": 0,
+        "pick": 1,
+        "number": 1,
+        "type_index": "",
+        "color": "rgba(0,0,0,1)",
+        "angle": 0,
+        "stops": [],
+        "shadowX": 0,
+        "shadowY": 0,
+        "shadowAmbiguity": 0,
+        "shadowColor": "transparent",
+        "fontSize": 50,
+        "weight": 0,
+        "isFontWeight": false,
+        "style": "normal",
+        "isItalic": false,
+        "decoration": "none",
+        "isUnderLine": false,
+        "fontFamily": 59,
+        "strokeWidth": 0,
+        "strokeColor": "transparent"
+      },
+    }
+  ]
+}
+            </textarea>
+            <div class="button-group">
+              <button type="button" id="formatButton2">Format JSON</button>
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+        <div class="divider divider2" id="divider2"></div>
+        <div class="main-content main-content2">
+          <div class="iframe-container">
+            <iframe
+              id="responseFrame2"
+              class="responseFrame"
+              name="responseFrame2"
+              src="about:blank"
+            ></iframe>
+            <div id="iframe-mask2" class="iframe-mask"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-layout hidden" id="sidebar">
+        <div class="toggle-button-container">
+          <div class="toggle-button" onclick="toggleSidebar()">
+            <div class="toggle-button-text">⬅</div>
+          </div>
+        </div>
+        <div class="sidebar-container">
+          <br />
+          <br />
+          <hr />
+          <br />
+
+          <div
+            class="page-switch-button active"
+            onclick="switchPage('page-one', 1)"
+          >
+            <span id="pageSwitchText">node.js伺服器測試資料1</span>
+          </div>
+          <br />
+          <div class="page-switch-button" onclick="switchPage('page-two', 2)">
+            <span id="pageSwitchText">node.js伺服器測試資料2</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="sidebar-toggle-button"
+        id="sidebarToggleButton"
+        onclick="toggleSidebar()"
+      >
+        <div class="toggle-button-text">⋮☰</div>
+      </div>
+    </div>
+    <script>
+      // 左側導覽列
+      function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggleButton = document.getElementById(
+          'sidebarToggleButton'
+        );
+        sidebar.classList.toggle('hidden');
+        sidebarToggleButton.classList.toggle('hidden');
+      }
+
+      // 切换到指定页面
+      let currentPageIndex = 1;
+      function switchPage(pageId, pageIndex) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach((page) => {
+          if (page.id === pageId) {
+            page.classList.add('active');
+          } else {
+            page.classList.remove('active');
+          }
+        });
+        const buttons = document.querySelectorAll('.page-switch-button');
+        buttons.forEach((button, index) => {
+          index = index + 1;
+          if (index === pageIndex) {
+            button.classList.add('active');
+          } else {
+            button.classList.remove('active');
+          }
+        });
+        currentPageIndex = pageIndex;
+        toggleSidebar();
+      }
+
+      // 中間左右調整bar
+      const sidebar = document.querySelector('.sidebar');
+      const mainContent = document.querySelector('.main-content');
+      const divider = document.getElementById('divider');
+      const mainLayout = document.querySelector('.main-layout');
+      const iframeMask = document.getElementById('iframe-mask');
+
+      let isResizing = false;
+
+      divider.addEventListener('mousedown', handleMouseDown);
+
+      function handleMouseDown(e) {
+        isResizing = true;
+        iframeMask.style.pointerEvents = 'auto';
+        mainLayout.addEventListener('mouseup', handleMouseUp);
+        mainLayout.addEventListener('mousemove', handleMouseMove);
+      }
+
+      function handleMouseMove(e) {
+        if (isResizing) {
+          const sidebarWidth = e.clientX - sidebar.getBoundingClientRect().left;
+          const mainContentWidth =
+            window.innerWidth - sidebarWidth - divider.offsetWidth;
+          sidebar.style.width = `${sidebarWidth}px`;
+          mainContent.style.width = `${mainContentWidth}px`;
+        }
+      }
+
+      function handleMouseUp() {
+        isResizing = false;
+        iframeMask.style.pointerEvents = 'none';
+        mainLayout.removeEventListener('mouseup', handleMouseUp);
+        mainLayout.removeEventListener('mousemove', handleMouseMove);
+      }
+
+      //更改GET方法顏色
+      const methodSelects = document.querySelectorAll('.httpMethod');
+
+      const updateSelectColor = (selectElement) => {
+        const selectedOption =
+          selectElement.options[selectElement.selectedIndex];
+        const color = selectedOption.getAttribute('data-color');
+        selectElement.style.backgroundColor = color;
+      };
+
+      // 初始化每个 select 的背景色，并添加事件监听器
+      methodSelects.forEach((selectElement) => {
+        updateSelectColor(selectElement);
+        selectElement.addEventListener('change', () =>
+          updateSelectColor(selectElement)
+        );
+      });
+
+      //第一個 logForm
+      document
+        .getElementById('logForm')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const postUrl = document.getElementById('logFormUrl').value.trim();
+
+          const httpMethod = document.getElementById('logFormHttpMethod').value;
+
+          fetch(postUrl, {
+            method: httpMethod,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.text();
+            })
+            .then((data) => {
+              const iframe = document.querySelector(
+                'iframe[name="responseFrame"]'
+              );
+              const blob = new Blob([data], { type: 'text/html' });
+              const url = URL.createObjectURL(blob);
+              iframe.src = url;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+
+      // 第二個 fontListForm
+      document
+        .getElementById('fontListForm')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const postUrl = document
+            .getElementById('fontListFormUrl')
+            .value.trim();
+
+          const httpMethod = document.getElementById(
+            'fontListFormHttpMethod'
+          ).value;
+
+          const style = `
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                background-color: #c4c4c4;
+                color: #000
+              }
+            </style>
+          `;
+
+          fetch(postUrl, {
+            method: httpMethod,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.text();
+            })
+            .then((data) => {
+              const iframe = document.querySelector(
+                'iframe[name="responseFrame"]'
+              );
+              const blob = new Blob([style + data], {
+                type: 'text/html;charset=UTF-8',
+              });
+
+              const url = URL.createObjectURL(blob);
+              iframe.src = url;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+
+      // 第三個 deleteAllForm
+      document
+        .getElementById('deleteAllForm')
+        .addEventListener('submit', function (event) {
+          event.preventDefault();
+
+          const postUrl = document
+            .getElementById('deleteAllFormHttpUrl')
+            .value.trim();
+
+          const httpMethod = document.getElementById(
+            'deleteAllFormHttpMethod'
+          ).value;
+
+          const style = `
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                background-color: #c4c4c4;
+                color: #000
+              }
+            </style>
+          `;
+
+          fetch(postUrl, {
+            method: httpMethod,
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              return response.text();
+            })
+            .then((data) => {
+              const iframe = document.querySelector(
+                'iframe[name="responseFrame"]'
+              );
+              const blob = new Blob([style + data], {
+                type: 'text/html;charset=UTF-8',
+              });
+
+              const url = URL.createObjectURL(blob);
+              iframe.src = url;
+            })
+            .catch((error) => {
+              console.error('Error:', error);
+            });
+        });
+
+      //POST請求
+      const form = document.getElementById('postForm');
+      const urlInput = document.getElementById('postUrl');
+      const textArea = document.getElementById('postData');
+      const formatButton = document.getElementById('formatButton');
+
+      formatButton.addEventListener('click', function () {
+        const textAreaJsonData = JSON.parse(textArea.value.trim());
+        textArea.value = JSON.stringify(textAreaJsonData, null, 2);
+      });
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const textAreaJsonData = JSON.parse(textArea.value.trim());
+        const postUrl = urlInput.value.trim();
+
+        fetch(postUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(textAreaJsonData),
+        })
+          .then((response) => response.blob())
+          .then((blob) => {
+            const imageUrl = URL.createObjectURL(blob);
+            const iframe = document.querySelector(
+              'iframe[name="responseFrame"]'
+            );
+            iframe.src = imageUrl;
+            console.log('Success:', imageUrl);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+
+      //POST請求
+      const postForm = document.getElementById('postForm2');
+      postForm.addEventListener('submit', test);
+      function test(event) {
+        if (event) {
+          event.preventDefault();
+        }
+        const textAreaJsonData2 = JSON.parse(
+          document.getElementById('postData2').value.trim()
+        );
+        const postUrl2 = document.getElementById('postUrl2').value.trim();
+
+        // 发送 POST 请求
+        fetch(postUrl2, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(textAreaJsonData2),
+        })
+          .then((response) => response.blob())
+          .then((blob) => {
+            const imageUrl = URL.createObjectURL(blob);
+            const iframe = document.querySelector(
+              'iframe[name="responseFrame2"]'
+            );
+            iframe.src = imageUrl;
+            console.log('Success:', imageUrl);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+
+      const formatButton2 = document.getElementById('formatButton2');
+      formatButton2.addEventListener('click', function () {
+        const textArea2 = document.getElementById('postData2');
+        const textAreaJsonData2 = JSON.parse(textArea2.value.trim());
+        textArea2.value = JSON.stringify(textAreaJsonData2, null, 2);
+      });
+
+      let token = '';
+      document
+        .getElementById('loginForm')
+        .addEventListener('submit', async function (event) {
+          event.preventDefault();
+          const messageElement = document.getElementById('message');
+
+          try {
+            if (!token) {
+              token = await login();
+              messageElement.textContent = '登入成功';
+              messageElement.style.color = 'green';
+            } else {
+              messageElement.textContent = '已經登入，直接獲取模板資料';
+            }
+
+            const templateData = await fetchTemplateDataWithToken(token);
+            const templateDataAndFontData = await fetchFontDataWithToken(
+              token,
+              templateData
+            );
+
+            document.getElementById('postData2').value = JSON.stringify(
+              templateDataAndFontData,
+              null,
+              2
+            );
+            test();
+          } catch (error) {
+            messageElement.textContent = '登入失敗: ' + error.message;
+            messageElement.style.color = 'red';
+          }
+        });
+
+      async function login() {
+        const account = document.getElementById('loginFormAccount').value;
+        const password = document.getElementById('loginFormPassword').value;
+        const loginData = { account, password };
+
+        const response = await fetch(
+          '',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(loginData),
+          }
+        );
+
+        const data = await response.json();
+
+        if (data.success) {
+          return data.token;
+        } else {
+          throw new Error(data.message);
+        }
+      }
+
+      async function fetchTemplateDataWithToken(token) {
+        const templateId = document.getElementById('postId').value;
+        const response = await fetch(
+          `/${templateId}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          return data.data;
+        } else {
+          throw new Error('获取data失败');
+        }
+      }
+
+      async function fetchFontDataWithToken(token, responseData) {
+        const response = await fetch(
+          '',
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        const data = await response.json();
+
+        if (response.ok) {
+          responseData.fontData = data.data;
+          return responseData;
+        } else {
+          throw new Error('获取字体数据失败');
+        }
+      }
+
+      const postFormId = document.getElementById('postFormId');
+      postFormId.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        try {
+          const templateData = await fetchTemplateDataWithToken(token);
+          const templateDataAndFontData = await fetchFontDataWithToken(
+            token,
+            templateData
+          );
+
+          // 更新 postData 的值
+          document.getElementById('postData2').value = JSON.stringify(
+            templateDataAndFontData,
+            null,
+            2
+          );
+
+          // 执行提交函数
+          test();
+        } catch (error) {
+          const messageElement = document.getElementById('message');
+          messageElement.textContent = '登入失敗: ' + error.message;
+          messageElement.style.color = 'red';
+        }
+      });
+
+      // 中間左右調整bar
+      const sidebar2 = document.querySelector('.sidebar2');
+      const mainContent2 = document.querySelector('.main-content2');
+      const divider2 = document.getElementById('divider2');
+      // const mainLayout = document.querySelector('.main-layout');
+      const iframeMask2 = document.getElementById('iframe-mask2');
+
+      divider2.addEventListener('mousedown', handleMouseDown2);
+
+      function handleMouseDown2(e) {
+        isResizing = true;
+        iframeMask2.style.pointerEvents = 'auto';
+        mainLayout.addEventListener('mouseup', handleMouseUp2);
+        mainLayout.addEventListener('mousemove', handleMouseMove2);
+      }
+
+      function handleMouseMove2(e) {
+        if (isResizing) {
+          const sidebar2Width =
+            e.clientX - sidebar2.getBoundingClientRect().left;
+          const mainContent2Width =
+            window.innerWidth - sidebar2Width - divider2.offsetWidth;
+          sidebar2.style.width = `${sidebar2Width}px`;
+          mainContent2.style.width = `${mainContent2Width}px`;
+        }
+      }
+
+      function handleMouseUp2() {
+        isResizing = false;
+        iframeMask2.style.pointerEvents = 'none';
+        mainLayout.removeEventListener('mouseup', handleMouseUp2);
+        mainLayout.removeEventListener('mousemove', handleMouseMove2);
+      }
+    </script>
+  </body>
+</html>
