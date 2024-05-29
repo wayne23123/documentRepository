@@ -388,9 +388,36 @@ docker images 映像包含代碼和應用程序環境(檔案很大)
 這就是為什麼映像中的代碼也被鎖定，唯讀容器只能進行更改
 
 
-# 2_34_指令_docker image inspect <id值>
+# 2_35_指令_docker image inspect <id值>
 
 docker image inspect <id值> 查看映像的詳細資料
+
+
+# 5_36_指令_docker cp <本地資料夾/.  容器名稱:/指定要將副本複製到的容器內部的路徑>
+
+查看一個容器，在他已經運行的時候向它添加一些東西或者從它提取一些東西
+
+docker cp <資料夾/本地主機項目文件.txt>
+
+docker cp <資料夾/. 容器名稱:/指定要將副本複製到的容器內部的路徑(如果此路徑不存在則將創建)>
+
+它允許您將文件或資料夾複製到正在運行的容器中或複製出正在運行的容器
+
+測試
+
+docker cp testfolder/. <name值>:/test
+刪除本地文件
+docker cp <name值>:/test testfolder
+
+
+
+
+
+
+
+
+
+
 
 
 
