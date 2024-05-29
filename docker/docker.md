@@ -459,6 +459,36 @@ docker tag <REPOSITORY:TAG> <DockerId/名稱:TAG>
 
 docker push <DockerId/名稱>
 
+如果因為權限問題推不上去，
+
+docker login
+
+Username:
+Password:
+
+docker logout
+
+
+docker pull <DockerId/名稱>
+
+docker run <DockerId/名稱>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
