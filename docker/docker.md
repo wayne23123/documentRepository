@@ -410,6 +410,13 @@ docker cp testfolder/. <name值>:/test
 docker cp <name值>:/test testfolder
 
 
+# 5_37_指令_docker run --name <自定義名稱值>
+
+容器自定義name值
+
+docker run --help
+
+docker run -p 3000:80 -d --rm --name <自定義名稱值> <id值>
 
 
 
