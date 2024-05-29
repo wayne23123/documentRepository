@@ -427,7 +427,7 @@ docker run -p 3000:80 -d --rm --name <自定義名稱值> <id值>
 
 例如 node:14
 
-1.映像的實際名稱 -> 
+1.映像的實際名稱(REPOSITORY) -> 
 
 2.tag
 
@@ -444,11 +444,20 @@ docker build -t <name:tag> .
 node:14 已經轉換名稱變成 name:tag
 
 
+# 5_39_指令_docker push <DockerId/名稱>
 
+cd 到資料夾
 
+docker build -t <DockerId/名稱> .
 
+docker tag <REPOSITORY:TAG> <DockerId/名稱>
+docker tag <REPOSITORY:TAG> <DockerId/名稱:TAG>
 
+重命名映像時，是克隆的，不會刪除舊映像
 
+好了之後
+
+docker push <DockerId/名稱>
 
 
 
