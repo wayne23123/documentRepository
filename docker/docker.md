@@ -419,10 +419,29 @@ docker run --help
 docker run -p 3000:80 -d --rm --name <自定義名稱值> <id值>
 
 
+# 5_37_指令_docker build -t <name:tag> .
 
+映像命名 1.標籤TAG
 
+映像標籤由兩部分組成 name : tag
 
+例如 node:14
 
+1.映像的實際名稱 -> 
+
+2.tag
+
+名稱可以設置映像的通用名稱 - 可以創建一組多個，更專業的映象，例如 node 我們拉入的映象
+
+標記 - 可以定義該映像的更專門的版本
+
+docker build --help
+
+docker build -t <name:tag> .
+
+在 docker images 看到
+
+node:14 已經轉換名稱變成 name:tag
 
 
 
