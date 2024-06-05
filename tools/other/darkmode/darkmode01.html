@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DarkmodeTestByWayne23123</title>
+    <style>
+      :root {
+        --background-color: #efefef;
+        --font-color: #444444;
+      }
+
+      body[data-theme='dark'] {
+        --background-color: #032b43;
+        --font-color: #efefef;
+      }
+
+      body {
+        background-color: var(--background-color);
+        color: var(--font-color);
+        font-size: 1.2em;
+        margin: 40vh auto;
+        text-align: center;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <label>
+        Darkmode
+        <input id='checkbox' type="checkbox" />
+      </label>
+    </section>
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        let checkbox = document.getElementById('checkbox');
+
+        let body = document.querySelector('body');
+
+        checkbox.addEventListener('change', (event) => {
+          event.target.checked
+            ? body.setAttribute('data-theme', 'dark')
+            : body.removeAttribute('data-theme');
+        });
+      });
+    </script>
+  </body>
+</html>
