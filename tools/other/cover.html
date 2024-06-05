@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML 轉換器</title>
+    <style>
+      textarea {
+        width: 100%;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML 轉換器</h1>
+    <label for="encodedHtml">輸入包含 HTML 字串：</label>
+    <textarea id="encodedHtml"></textarea>
+    <br />
+    <button onclick="decodeHtmlEntities()">轉換</button>
+    <br />
+    <label for="decodedHtml">轉換後的字串：</label>
+    <textarea id="decodedHtml"></textarea>
+    <br />
+    <button onclick="copyDecodedHtml()">複製</button>
+
+    <script>
+      function decodeHtmlEntities() {
+        const encodedHtml = document.getElementById('encodedHtml').value;
+        const decodedHtml = document.createElement('textarea');
+        decodedHtml.innerHTML = encodedHtml;
+        document.getElementById('decodedHtml').value = decodedHtml.value;
+      }
+
+      function copyDecodedHtml() {
+        const decodedHtml = document.getElementById('decodedHtml');
+        decodedHtml.select();
+        document.execCommand('copy');
+      }
+
+      function formatDecodedHtml() {
+        const decodedHtml = document.getElementById('decodedHtml');
+        decodedHtml.value = formatWithPrettier(decodedHtml.value);
+      }
+
+    </script>
+  </body>
+</html>
