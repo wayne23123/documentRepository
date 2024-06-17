@@ -197,7 +197,134 @@
       <p class="normal-case">normal-case</p>
       <p class="uppercase">uppercase</p>
       <p class="lowercase">lowercase</p>
-      <p class="capitalize">capitalize</p>
+      <p class="capitalize">capitalize test</p>
+    </section>
+
+    <section>
+      <div>1 0.25rem 16px</div>
+      <div class="bg-black text-white my-2 w-4">w-4</div>
+      <div class="bg-black text-white my-2 w-48">w-48</div>
+      <div class="bg-black text-white my-2 w-96">w-96</div>
+
+      <div class="bg-black text-white my-2 w-auto">Auto</div>
+
+      <div class="bg-green-500 text-white my-2 w-1/2">w-1/2</div>
+      <div class="bg-green-500 text-white my-2 w-1/3">w-1/3</div>
+      <div class="bg-green-500 text-white my-2 w-1/4">w-1/4</div>
+
+      <div class="bg-purple-500 text-white my-2 w-screen">w-screen</div>
+
+      <div class="bg-zinc-500 text-white my-2 w-full">w-full</div>
+
+      <div class="bg-emerald-500 text-white my-2 w-min">w-min</div>
+      <div class="bg-emerald-500 text-white my-2 w-max">w-max</div>
+
+      <div class="bg-red-500 text-white my-2 w-[300px]">300px</div>
+
+      <div class="bg-gray-100 max-w-lg mx-auto">
+        bg-gray-100 max-w-lg mx-auto <br />
+        max-w-lg 代表 max-width: 32rem <br />
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
+        perferendis incidunt nihil ullam repellendus praesentium consectetur et
+        sed distinctio, magni iusto quos repellat officiis cum dolore aliquid
+        minus esse pariatur.
+      </div>
+
+      <div class="flex items-end">
+        <div class="bg-orange-500 w-20 h-24">h-24</div>
+        <div class="bg-orange-500 w-20 h-32">h-32</div>
+        <div class="bg-orange-500 w-20 h-40">h-40</div>
+        <div class="bg-orange-500 w-20 h-48">h-48</div>
+        <div class="bg-orange-500 w-20 h-64">h-64</div>
+        <div class="bg-orange-500 w-20 h-80">h-80</div>
+      </div>
+
+      <div class="bg-gray-500 text-black h-screen">h-screen</div>
+
+      <div class="h-48 bg-red-200">
+        <div class="h-24 bg-red-600 min-h-full">Tailwind is awesome</div>
+      </div>
+
+      <div class="h-24 bg-orange-200">
+        <div class="h-48 bg-orange-500 max-h-full">Tailwind is awesome</div>
+      </div>
+
+      <div class="h-screen bg-blue-300">Hello</div>
+    </section>
+
+    <section>
+      <div class="relative w-1/2 h-12 bg-red-200">
+        <p>Relative parent</p>
+        <div class="absolute bottom-0 right-0 bg-red-500">
+          <p>Absolute child</p>
+        </div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute left-0 top-0 h-16 w-16 bg-yellow-300">01</div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute top-0 right-0 h-16 w-16 bg-yellow-300">03</div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute bottom-0 left-0 h-16 w-16 bg-yellow-300">07</div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute bottom-0 right-0 h-16 w-16 bg-yellow-300">09</div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute inset-x-0 top-0 h-16 bg-yellow-300">02</div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute inset-y-0 left-0 w-16 bg-yellow-300">04</div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute inset-y-0 right-0 w-16 bg-yellow-300">06</div>
+      </div>
+
+      <div class="relative h-32 w-32 bg-yellow-100">
+        <div class="absolute inset-x-0 bottom-0 h-16 bg-yellow-300">08</div>
+      </div>
+
+      <div>
+        test
+        <span class="inline">test</span>sapiente ut rerum esse ullam provident,
+        fugit
+        <span class="inline-block"
+          >This is display inline-block and will not extend beyond it's
+          parent</span
+        >eos quam
+        <span class="block"
+          >This is display block and will move to it's own line</span
+        >
+        reprehenderit est hic aut unde sequi, officia, ipsa amet doloribus
+        ratione<span class="hidden"
+          >This is display none and will not display at all</span
+        >
+        ad.
+      </div>
+
+      <div class="relative h-36">
+        <div class="absolute left-10 w-24 h-24 bg-blue-200 z-40">1</div>
+        <div class="absolute left-20 w-24 h-24 bg-blue-300">2</div>
+        <div class="absolute left-40 w-24 h-24 bg-blue-400 z-10">3</div>
+        <div class="absolute left-60 w-24 h-24 bg-blue-500 z-20">4</div>
+        <div class="absolute left-80 w-24 h-24 bg-blue-600">5</div>
+      </div>
+
+      <div class="w-1/2">
+        <img
+          class="h-48 w-48 float-right"
+          src="https://picsum.photos/1200/600?random=10"
+        />
+        <p>test</p>
+      </div>
     </section>
   </body>
 </html>
