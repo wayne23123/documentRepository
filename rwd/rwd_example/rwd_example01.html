@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+      }
+      .page {
+        display: none;
+        flex: 1;
+        background-color: #c4c4c4;
+      }
+      .test {
+        width: 100%;
+        height: 100%;
+      }
+      .page.active {
+        display: flex;
+      }
+
+      .main-layout {
+        display: flex;
+        flex: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-layout">
+      <div class="page page-one active" id="page-one">
+        <h1 style="margin: auto">This is Page One</h1>
+      </div>
+    </div>
+  </body>
+  <script></script>
+</html>
