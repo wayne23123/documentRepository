@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #c4c4c4;
+      }
+    </style>
+  </head>
+  <body>
+    <div>columns-4 gap-2</div>
+    <div class="columns-4 gap-2">
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+    </div>
+
+    <div>columns-xs</div>
+    <div class="columns-xs">
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+    </div>
+
+    <div>columns-2 gap-8</div>
+    <div class="columns-2 gap-8">
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img
+        class="w-full break-after-column"
+        src="https://picsum.photos/1200/600?random=10"
+      />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+    </div>
+
+    <div>columns-3 gap-24</div>
+    <div class="columns-3 gap-24">
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img
+        class="w-full break-before-column"
+        src="https://picsum.photos/1200/600?random=10"
+      />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+    </div>
+
+    <div>columns-3xs</div>
+    <div class="columns-3xs">
+      <img
+        class="w-full aspect-video"
+        src="https://picsum.photos/1200/600?random=10"
+      />
+      <img
+        class="w-full aspect-square"
+        src="https://picsum.photos/1200/600?random=10"
+      />
+      <img
+        class="w-full break"
+        src="https://picsum.photos/1200/600?random=10"
+      />
+      <img class="w-full" src="https://picsum.photos/1200/600?random=10" />
+    </div>
+
+    <div>
+      --------------------------------------------------------------------
+    </div>
+    <div>columns-1 __ : __ columns: 1;</div>
+    <div>columns-2 __ : __ columns: 2;</div>
+    <div>columns-3 __ : __ columns: 3;</div>
+    <div>columns-4 __ : __ columns: 4;</div>
+    <div>columns-5 __ : __ columns: 5;</div>
+    <div>columns-6 __ : __ columns: 6;</div>
+    <div>columns-7 __ : __ columns: 7;</div>
+    <div>columns-8 __ : __ columns: 8;</div>
+    <div>columns-9 __ : __ columns: 9;</div>
+    <div>columns-10 __ : __ columns: 10;</div>
+    <div>columns-11 __ : __ columns: 11;</div>
+    <div>columns-12 __ : __ columns: 12;</div>
+    <div>columns-auto __ : __ columns: auto;</div>
+    <div>columns-3xs __ : __ columns: 16rem; /* 256px */</div>
+    <div>columns-2xs __ : __ columns: 18rem; /* 288px */</div>
+    <div>columns-xs __ : __ columns: 20rem; /* 320px */</div>
+    <div>columns-sm __ : __ columns: 24rem; /* 384px */</div>
+    <div>columns-md __ : __ columns: 28rem; /* 448px */</div>
+    <div>columns-lg __ : __ columns: 32rem; /* 512px */</div>
+    <div>columns-xl __ : __ columns: 36rem; /* 576px */</div>
+    <div>columns-2xl __ : __ columns: 42rem; /* 672px */</div>
+    <div>columns-3xl __ : __ columns: 48rem; /* 768px */</div>
+    <div>columns-4xl __ : __ columns: 56rem; /* 896px */</div>
+    <div>columns-5xl __ : __ columns: 64rem; /* 1024px */</div>
+    <div>columns-6xl __ : __ columns: 72rem; /* 1152px */</div>
+    <div>columns-7xl __ : __ columns: 80rem; /* 1280px */</div>
+
+    <div>
+      --------------------------------------------------------------------
+    </div>
+
+    <div>break-after-auto __ : __ break-after: auto;</div>
+    <div>break-after-avoid __ : __ break-after: avoid;</div>
+    <div>break-after-all __ : __ break-after: all;</div>
+    <div>break-after-avoid-page __ : __ break-after: avoid-page;</div>
+    <div>break-after-page __ : __ break-after: page;</div>
+    <div>break-after-left __ : __ break-after: left;</div>
+    <div>break-after-right __ : __ break-after: right;</div>
+    <div>break-after-column __ : __ break-after: column;</div>
+
+    <div>
+      --------------------------------------------------------------------
+    </div>
+    <div>reak-before-auto __ : __ break-before: auto;</div>
+    <div>break-before-avoid __ : __ break-before: avoid;</div>
+    <div>break-before-all __ : __ break-before: all;</div>
+    <div>break-before-avoid-page __ : __ break-before: avoid-page;</div>
+    <div>break-before-page __ : __ break-before: page;</div>
+    <div>break-before-left __ : __ break-before: left;</div>
+    <div>break-before-right __ : __ break-before: right;</div>
+    <div>break-before-column __ : __ break-before: column;</div>
+  </body>
+</html>

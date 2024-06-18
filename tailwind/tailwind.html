@@ -765,8 +765,36 @@
       <div class="select-text">select-text</div>
       <div class="select-all">select-all</div>
       <div class="select-auto">select-auto</div>
-
-      <div id="item">bottom</div>
     </section>
+
+    <br />
+    <div>sm 640px @media (min-width: 640px) { ... }</div>
+    <div>md 768px @media (min-width: 768px) { ... }</div>
+    <div>lg 1024px @media (min-width: 1024px) { ... }</div>
+    <div>xl 1280px @media (min-width: 1280px) { ... }</div>
+    <div>2xl 1536px @media (min-width: 1536px) { ... }</div>
+    <section
+      class="bg-black sm:bg-green-800 md:bg-blue-800 lg:bg-yellow-800 xl:bg-purple-800 2xl:bg-orange-800"
+    >
+      <h1 class="testBreakpoint text-white"></h1>
+      <h5 class="text-white text-xl md:text-3xl xl:text-5xl">
+        bg-black sm:bg-green-800 md:bg-blue-800 lg:bg-yellow-800
+        xl:bg-purple-800 2xl:bg-orange-800
+      </h5>
+    </section>
+
+    <div id="item">bottom</div>
   </body>
+  <script>
+    function showBrowserWidth() {
+      const width =
+        window.innerWidth ||
+        document.documentElement.clientWidth ||
+        document.body.clientWidth;
+
+      document.querySelector('.testBreakpoint').innerHTML = `Width: ${width}`;
+    }
+    window.onload = showBrowserWidth;
+    window.onresize = showBrowserWidth;
+  </script>
 </html>
