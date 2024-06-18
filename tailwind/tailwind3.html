@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #c4c4c4;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex flex-col md:flex-row">
+      <div class="p-10 border border-blue-300 bg-blue-100">01</div>
+      <div class="p-10 border border-blue-300 bg-blue-100">02</div>
+      <div class="p-10 border border-blue-300 bg-blue-100">03</div>
+      <div class="p-10 border border-blue-300 bg-blue-100">04</div>
+    </div>
+
+    <div
+      class="flex flex-wrap h-72 w-100 bg-gray-100 justify-around items-center"
+    >
+      <div class="p-10 border border-blue-600 bg-blue-100">01</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">02</div>
+      <div class="self-start p-10 border border-blue-600 bg-blue-100">03</div>
+      <div class="self-end p-10 border border-blue-600 bg-blue-100">04</div>
+    </div>
+
+    <div
+      class="flex flex-col gap-4 w-100 bg-gray-200 justify-around items-center"
+    >
+      <div class="order-4 p-10 border border-blue-600 bg-blue-100">01</div>
+      <div class="order-1 p-10 border border-blue-600 bg-blue-100">02</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">03</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">04</div>
+    </div>
+
+    <div class="flex w-100 bg-gray-300">
+      <div class="w-64 flex-none p-10 border border-blue-600 bg-blue-100">
+        01
+      </div>
+      <div class="w-64 flex-initial p-10 border border-blue-600 bg-blue-100">
+        02
+      </div>
+      <div class="w-64 flex-auto p-10 border border-blue-600 bg-blue-100">
+        03
+      </div>
+      <div class="w-64 flex-1 p-10 border border-blue-600 bg-blue-100">04</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">05</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">06</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">07</div>
+    </div>
+
+    <div>
+      -------------------------------------------------------------------------
+    </div>
+    <div>justify-start justify-content: flex-start;</div>
+    <div>justify-end justify-content: flex-end;</div>
+    <div>justify-center justify-content: center;</div>
+    <div>justify-between justify-content: space-between;</div>
+    <div>justify-around justify-content: space-around;</div>
+    <div>justify-evenly justify-content: space-evenly;</div>
+
+    <div>
+      -------------------------------------------------------------------------
+    </div>
+    <div>items-start align-items: flex-start;</div>
+    <div>items-end align-items: flex-end;</div>
+    <div>items-center align-items: center;</div>
+    <div>items-baseline align-items: baseline;</div>
+    <div>items-stretch align-items: stretch;</div>
+
+    <div>
+      -------------------------------------------------------------------------
+    </div>
+    <div>flex-row flex-direction: row;</div>
+    <div>flex-row-reverse flex-direction: row-reverse;</div>
+    <div>flex-col flex-direction: column;</div>
+    <div>flex-col-reverse flex-direction: column-reverse;</div>
+
+    <div>
+      -------------------------------------------------------------------------
+    </div>
+    <div>flex-wrap flex-wrap: wrap;</div>
+    <div>flex-wrap-reverse flex-wrap: wrap-reverse;</div>
+    <div>flex-nowrap flex-wrap: nowrap;</div>
+
+    <div>
+      -------------------------------------------------------------------------
+    </div>
+    <div>flex-none flex: none;</div>
+    <div>Prevent item from growing or shrinking</div>
+    <br />
+    <div></div>
+    <div>flex-initial flex: 0 1 auto;</div>
+    <div>
+      Allow item to shrink but not grow, taking into account its initial size
+    </div>
+    <br />
+    <div></div>
+    <div>flex-auto flex: 1 1 auto;</div>
+    <div>
+      Allow item to grow and shrink, taking into account its initial size
+    </div>
+    <br />
+    <div></div>
+    <div>flex-1 flex: 1 1 0%;</div>
+    <div>
+      Allow item to grow and shrink as needed, ignoring its initial size
+    </div>
+  </body>
+</html>
