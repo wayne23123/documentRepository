@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>頁</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background-color: #c4c4c4;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Grid cols and rows -->
+    <div class="grid grid-cols-3 grid-rows-4 gap-4 w-100 bg-gray-100">
+      <div class="p-10 border border-blue-600 bg-blue-100">01</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">02</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">03</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">04</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">05</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">06</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">07</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">08</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">09</div>
+    </div>
+
+    <!-- Col and row span -->
+    <div class="grid grid-cols-3 gap-4 w-100 bg-gray-100">
+      <div
+        class="col-span-2 row-span-2 p-10 border border-blue-600 bg-blue-100"
+      >
+        01
+      </div>
+      <div class="p-10 border border-blue-600 bg-blue-100">02</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">03</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">04</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">05</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">06</div>
+      <div class="col-span-3 p-10 border border-blue-600 bg-blue-100">07</div>
+      <div class="p-10 border border-blue-600 bg-blue-100">08</div>
+      <div class="col-span-2 p-10 border border-blue-600 bg-blue-100">09</div>
+    </div>
+
+    <div>
+      ---------------------------------------------------------------------------
+    </div>
+    <div>
+      grid-cols-1 __ : __ grid-template-columns: repeat(1, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-2 __ : __ grid-template-columns: repeat(2, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-3 __ : __ grid-template-columns: repeat(3, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-4 __ : __ grid-template-columns: repeat(4, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-5 __ : __ grid-template-columns: repeat(5, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-6 __ : __ grid-template-columns: repeat(6, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-7 __ : __ grid-template-columns: repeat(7, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-8 __ : __ grid-template-columns: repeat(8, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-9 __ : __ grid-template-columns: repeat(9, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-10 __ : __ grid-template-columns: repeat(10, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-11 __ : __ grid-template-columns: repeat(11, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-cols-12 __ : __ grid-template-columns: repeat(12, minmax(0, 1fr));
+    </div>
+    <div>grid-cols-none __ : __ grid-template-columns: none;</div>
+
+    <div>
+      ---------------------------------------------------------------------------
+    </div>
+    <div>
+      grid-rows-1 __ : __ grid-template-rows: repeat(1, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-rows-2 __ : __ grid-template-rows: repeat(2, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-rows-3 __ : __ grid-template-rows: repeat(3, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-rows-4 __ : __ grid-template-rows: repeat(4, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-rows-5 __ : __ grid-template-rows: repeat(5, minmax(0, 1fr));
+    </div>
+    <div>
+      grid-rows-6 __ : __ grid-template-rows: repeat(6, minmax(0, 1fr));
+    </div>
+    <div>grid-rows-none __ : __ grid-template-rows: none;</div>
+  </body>
+</html>
