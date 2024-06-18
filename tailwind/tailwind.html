@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" class="scroll-smooth">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>頁</title>
@@ -11,6 +11,9 @@
     </style>
   </head>
   <body>
+    <div>
+      <a class="btn p-3 bg-green-500" href="#item">Scroll To bottom</a>
+    </div>
     <section>
       <div
         class="flex items-center p-6 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-x-4 mt-12"
@@ -254,9 +257,9 @@
 
     <section>
       <div class="relative w-1/2 h-12 bg-red-200">
-        <p>Relative parent</p>
+        <p>relative w-1/2 h-12 bg-red-200</p>
         <div class="absolute bottom-0 right-0 bg-red-500">
-          <p>Absolute child</p>
+          <p>absolute bottom-0 right-0 bg-red-500</p>
         </div>
       </div>
 
@@ -276,6 +279,8 @@
         <div class="absolute bottom-0 right-0 h-16 w-16 bg-yellow-300">09</div>
       </div>
 
+      <br />
+
       <div class="relative h-32 w-32 bg-yellow-100">
         <div class="absolute inset-x-0 top-0 h-16 bg-yellow-300">02</div>
       </div>
@@ -294,9 +299,9 @@
 
       <div>
         test
-        <span class="inline">test</span>sapiente ut rerum esse ullam provident,
-        fugit
-        <span class="inline-block"
+        <span class="inline font-bold">test</span>sapiente ut rerum esse ullam
+        provident, fugit
+        <span class="inline-block font-bold"
           >This is display inline-block and will not extend beyond it's
           parent</span
         >eos quam
@@ -304,7 +309,7 @@
           >This is display block and will move to it's own line</span
         >
         reprehenderit est hic aut unde sequi, officia, ipsa amet doloribus
-        ratione<span class="hidden"
+        ratione<span class="hidden font-bold"
           >This is display none and will not display at all</span
         >
         ad.
@@ -318,13 +323,450 @@
         <div class="absolute left-80 w-24 h-24 bg-blue-600">5</div>
       </div>
 
-      <div class="w-1/2">
+      <div class="w-1/2 bg-yellow-200">
         <img
           class="h-48 w-48 float-right"
           src="https://picsum.photos/1200/600?random=10"
         />
         <p>test</p>
       </div>
+    </section>
+
+    <section>
+      <div
+        class="h-64 w-72 bg-blue-500 bg-cover bg-no-repeat bg-center"
+        style="
+          background-image: url('https://picsum.photos/1200/600?random=10');
+        "
+      ></div>
+      <div>bg-auto __ : background-size: auto;</div>
+      <div>bg-cover __ : background-size: cover;</div>
+      <div>bg-contain __ : background-size: contain;</div>
+
+      <div>-------------------------------------------------</div>
+      <div>bg-repeat __ : background-repeat: repeat;</div>
+      <div>bg-no-repeat __ : background-repeat: no-repeat;</div>
+      <div>bg-repeat-x __ : background-repeat: repeat-x;</div>
+      <div>bg-repeat-y __ : background-repeat: repeat-y;</div>
+      <div>bg-repeat-round __ : background-repeat: round;</div>
+      <div>bg-repeat-space __ : background-repeat: space;</div>
+
+      <div>-------------------------------------------------</div>
+      <div>bg-bottom __ : background-position: bottom;</div>
+      <div>bg-center __ : background-position: center;</div>
+      <div>bg-left __ : background-position: left;</div>
+      <div>bg-left-bottom __ : background-position: left bottom;</div>
+      <div>bg-left-top __ : background-position: left top;</div>
+      <div>bg-right __ : background-position: right;</div>
+      <div>bg-right-bottom __ : background-position: right bottom;</div>
+      <div>bg-right-top __ : background-position: right top;</div>
+      <div>bg-top __ : background-position: top;</div>
+      <div>-------------------------------------------------</div>
+      <div>bg-fixed __ : background-attachment: fixed;</div>
+      <div>bg-local __ : background-attachment: local;</div>
+      <div>bg-scroll __ : background-attachment: scroll;</div>
+
+      <div class="h-24 bg-gradient-to-r from-cyan-500 to-blue-500">
+        bg-gradient-to-r from-cyan-500 to-blue-500
+      </div>
+      <div
+        class="h-24 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+      >
+        bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
+      </div>
+
+      <div class="w-96 mt-6 ml-4 p-3 shadow-md">
+        w-96 mt-6 ml-4 p-3 shadow-md
+      </div>
+      <div class="w-96 mt-6 ml-4 p-3 shadow-lg">
+        w-96 mt-6 ml-4 p-3 shadow-lg
+      </div>
+      <div class="w-96 mt-6 ml-4 p-3 shadow-xl">
+        w-96 mt-6 ml-4 p-3 shadow-xl
+      </div>
+      <div class="w-96 mt-6 ml-4 p-3 shadow-2xl">
+        w-96 mt-6 ml-4 p-3 shadow-2xl
+      </div>
+      <div class="w-96 mt-6 ml-4 p-3 shadow-inner">
+        w-96 mt-6 ml-4 p-3 shadow-inner
+      </div>
+      <div class="w-96 mt-6 ml-4 p-3 shadow-xl shadow-blue-500/50">
+        w-96 mt-6 ml-4 p-3 shadow-xl shadow-blue-500/50
+      </div>
+      <div class="w-96 mt-6 ml-4 p-3 shadow-xl shadow-red-500/100">
+        w-96 mt-6 ml-4 p-3 shadow-xl shadow-red-500/100
+      </div>
+
+      <br />
+      <div class="flex justify-center -space-x-24">
+        <div class="mix-blend-multiply bg-blue-400 ...">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+          minus deleniti iusto delectus alias natus quam dolor explicabo quas
+          eius!
+        </div>
+        <div class="mix-blend-multiply bg-pink-400 ...">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
+          minus deleniti iusto delectus alias natus quam dolor explicabo quas
+          eius!
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="w-96 m-3 p-5 border">w-96 m-3 p-5 border</div>
+      <div class="w-96 m-3 p-5 border-2 border-blue-500">
+        "w-96 m-3 p-5 border-2 border-blue-500
+      </div>
+      <div class="w-96 m-3 p-5 border-4 border-red-500">
+        w-96 m-3 p-5 border-4 border-red-500
+      </div>
+      <div class="w-96 m-3 p-5 border-x-2 border-zinc-500">
+        w-96 m-3 p-5 border-x-2 border-zinc-500
+      </div>
+      <div class="w-96 m-3 p-5 border-x-2 border-zinc-500">
+        w-96 m-3 p-5 border-x-2 border-zinc-500
+      </div>
+      <div class="w-96 m-3 p-5 border-y-2 border-zinc-500">
+        w-96 m-3 p-5 border-y-2 border-zinc-500
+      </div>
+      <div class="w-96 m-3 p-5 border-r-2 border-zinc-500">
+        w-96 m-3 p-5 border-r-2 border-zinc-500
+      </div>
+      <div class="w-96 m-3 p-5 border-l-2 border-zinc-500">
+        w-96 m-3 p-5 border-l-2 border-zinc-500
+      </div>
+      <div class="w-96 m-3 p-5 border-b-2 border-zinc-500">
+        w-96 m-3 p-5 border-b-2 border-zinc-500
+      </div>
+      <div class="w-96 m-3 p-5 border-t-2 border-zinc-500">
+        w-96 m-3 p-5 border-t-2 border-zinc-500
+      </div>
+
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded">
+        w-96 m-3 p-5 bg-gray-300 rounded
+      </div>
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded-lg">
+        w-96 m-3 p-5 bg-gray-300 rounded-lg
+      </div>
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded-xl">
+        w-96 m-3 p-5 bg-gray-300 rounded-xl
+      </div>
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded-2xl">
+        w-96 m-3 p-5 bg-gray-300 rounded-2xl
+      </div>
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded-3xl">
+        w-96 m-3 p-5 bg-gray-300 rounded-3xl
+      </div>
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded-full">
+        w-96 m-3 p-5 bg-gray-300 rounded-full
+      </div>
+
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded-t-xl">
+        w-96 m-3 p-5 bg-gray-300 rounded-t-xl
+      </div>
+      <div class="w-96 m-3 p-5 bg-gray-300 rounded-b-xl">
+        w-96 m-3 p-5 bg-gray-300 rounded-b-xl
+      </div>
+
+      <button class="outline outline-offset-2 outline-1">Button 1</button>
+      <button class="outline outline-offset-2 outline-2">Button 2</button>
+      <button class="outline outline-offset-2 outline-4">Button 3</button>
+    </section>
+
+    <section>
+      <div class="blur-none">blur-none</div>
+      <div class="blur-sm">blur-sm</div>
+      <div>blur-lg</div>
+      <div class="blur-lg">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>blur-2xl</div>
+      <div class="blur-2xl">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+
+      <div>brightness-50</div>
+      <div class="brightness-50">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>brightness-100</div>
+      <div class="brightness-100">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>brightness-150</div>
+      <div class="brightness-150">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>brightness-200</div>
+      <div class="brightness-200">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>contrast-50</div>
+
+      <div class="contrast-50">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>contrast-100</div>
+      <div class="contrast-100">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>contrast-150</div>
+      <div class="contrast-150">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>contrast-200</div>
+      <div class="contrast-200">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>grayscale</div>
+      <div class="grayscale">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>invert</div>
+      <div class="invert">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>sepia</div>
+      <div class="sepia">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>hue-rotate-15</div>
+      <div class="hue-rotate-15">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>hue-rotate-90</div>
+      <div class="hue-rotate-90">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>hue-rotate-180</div>
+      <div class="hue-rotate-180">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>hue-rotate-60</div>
+      <div class="hue-rotate-60">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>saturate-50</div>
+      <div class="saturate-50">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>saturate-100</div>
+      <div class="saturate-100">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>saturate-150</div>
+      <div class="saturate-150">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+      <div>saturate-200</div>
+      <div class="saturate-200">
+        <img
+          class="w-48"
+          src="https://picsum.photos/1200/600?random=10"
+          alt=""
+        />
+      </div>
+    </section>
+
+    <section>
+      <div>
+        bg-black text-white py-3 px-5 rounded-lg m-3 hover:bg-orange-500
+        hover:text-black
+      </div>
+      <button
+        type="button"
+        class="bg-black text-white py-3 px-5 rounded-lg m-3 hover:bg-orange-500 hover:text-black"
+      >
+        Submit
+      </button>
+      <div>
+        bg-black text-white py-3 px-5 rounded-lg m-3 focus:bg-green-500
+        focus:text-black
+      </div>
+      <button
+        type="button"
+        class="bg-black text-white py-3 px-5 rounded-lg m-3 focus:bg-green-500 focus:text-black"
+      >
+        Submit
+      </button>
+      <div>
+        bg-black text-white py-3 px-5 rounded-lg m-3 active:bg-yellow-500
+        active:text-black
+      </div>
+      <button
+        type="button"
+        class="bg-black text-white py-3 px-5 rounded-lg m-3 active:bg-yellow-500 active:text-black"
+      >
+        Submit
+      </button>
+
+      <br />
+
+      <div>
+        group block max-w-xs mx-auto rounded-lg p-6 bg-white shadow-lg space-y-3
+        hover:bg-sky-500
+      </div>
+      <a
+        href="#"
+        class="group block max-w-xs mx-auto rounded-lg p-6 bg-white shadow-lg space-y-3 hover:bg-sky-500"
+      >
+        <div class="flex items-center">
+          <h3 class="group-hover:text-white">group-hover:text-white</h3>
+        </div>
+        <p class="group-hover:text-white">group-hover:text-white</p>
+      </a>
+
+      <br />
+
+      <div>even:bg-green-200 odd:bg-blue-200</div>
+      <ul>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 1</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 2</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 3</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 4</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 5</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 6</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 7</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 8</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 9</li>
+        <li class="even:bg-green-200 odd:bg-blue-200">Item 10</li>
+      </ul>
+
+      <br />
+
+      <div>appearance-none</div>
+      <select>
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <select class="appearance-none">
+        <option>Yes</option>
+        <option>No</option>
+      </select>
+
+      <br />
+
+      <div>bg-black text-white py-3 px-5 rounded-lg m-3 cursor-pointer</div>
+      <button
+        type="button"
+        class="bg-black text-white py-3 px-5 rounded-lg m-3 cursor-pointer"
+      >
+        Submit
+      </button>
+
+      <div>
+        bg-black text-yellow-500 py-3 px-5 rounded-lg m-3 cursor-progress
+      </div>
+      <button
+        type="button"
+        class="bg-black text-yellow-500 py-3 px-5 rounded-lg m-3 cursor-progress"
+      >
+        Loading...
+      </button>
+
+      <div>
+        bg-black text-red-200 py-3 px-5 rounded-lg m-3 cursor-not-allowed
+      </div>
+      <button
+        type="button"
+        disabled
+        class="bg-black text-red-200 py-3 px-5 rounded-lg m-3 cursor-not-allowed"
+      >
+        Confirm
+      </button>
+
+      <br />
+
+      <div>border border-black rounded resize</div>
+      <textarea class="border border-black rounded resize"></textarea>
+
+      <div class="select-none">select-none</div>
+      <div class="select-text">select-text</div>
+      <div class="select-all">select-all</div>
+      <div class="select-auto">select-auto</div>
+
+      <div id="item">bottom</div>
     </section>
   </body>
 </html>
