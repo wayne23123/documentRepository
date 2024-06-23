@@ -17,13 +17,10 @@ jupyter notebook
 
 Python 3 (ipykernel)
 
-https://jwlin.github.io/py-scraping-analysis-book/ch1/connect.html
-
-
 import requests
 from bs4 import BeautifulSoup
 
-response=requests.get("https://jwlin.github.io/py-scraping-analysis-book/ch1/connect.html")
+response=requests.get("")
 
 print(response)
 
@@ -114,5 +111,77 @@ re.findall(pattern,string)
 
 
 
+
+import re
+pattern = "lovecat|lovecat"
+
+|代表左右邊只要任一符合條件即可
+
+string = "find lovecat,sdfjfjlovedog"
+re.findall(pattern,string)
+
+->['lovecat','lovecat']
+
+
+
+import re
+pattern = "neo|ne{3}o"
+
+|代表左右邊只要任一符合條件即可
+
+string = "findneoneeoneeeoneeeeo"
+re.findall(pattern,string)
+
+->['neo','neeeo']
+
+
+
+import requests
+from bs4 import BeautifulSoup
+import re
+res=requests.get("")
+soup=BeautifulSoup(res.text,"html.parser")
+soup
+soup.find_all(re.compile("t{d|r}"))
+-> 找出 td tr 標籤
+
+soup.find_all(href=re.compile("^http"))
+-> 找出 href 並且有 http
+
+soup.find_all("",text=re.compile("我"))
+-> 找出有 我 的資訊的
+
+list_temp=soup.find_all("",text=re.compile("我"))
+list_temp[1]
+
+
+
+pip install lxml
+
+import requests
+from bs4 import BeautifulSoup
+import re
+
+res=requests.get("")
+res.encoding='utf-8'
+soup=BeautifulSoup(res.text,"lxml")
+
+soup
+
+address1=soup.find_all("",text=re.compile('街'))
+address2=soup.find_all("",text=re.compile('路'))
+
+phone=soup.find_all("span")
+
+phone=str(phone)
+
+re.findall("0[1-9]+-[0-9]+",phone)
+
+re.findall("0[1-9]+",phone)
+
+re.findall("0[1-9]{9}",phone)
+
+
+https://www.twse.com.tw/zh/page/trading/exchange/STOCK_DAY_AVG.html
 
 
