@@ -17,11 +17,62 @@
   </head>
   <body>
     <!-- global container -->
-    <div class="flex justify-content items-center min-h-screen bg-red-300">
+    <div class="flex justify-center items-center min-h-screen bg-red-300">
       <!-- card container -->
       <div
         class="relative flex flex-col m-6 space-y-10 bg-gray-200 shadow-2xl rounded-2xl md:flex-row md:space-y-0 md:m-0"
-      ></div>
+      >
+        <!-- left -->
+        <div class="p-6 md:p-20">
+          <!-- top -->
+          <h2 class="font-mono font-bold text-4xl mb-5">login</h2>
+
+          <p class="max-w-sm mb-12 font-sans font-light text-gray-600">
+            login your account
+          </p>
+
+          <input
+            type="text"
+            class="w-full p-6 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
+            placeholder="enter email"
+          />
+
+          <!-- middle -->
+          <div
+            class="flex flex-col items-center justify-between mt-6 space-y-6 md:flex-row md:space-y-0"
+          >
+            <div class="font-thin text-cyan-700">忘記密碼</div>
+
+            <button
+              class="w-full md:width-auto flex justify-center items-center p-6 space-x-4 font-sans font-bold text-gray-200 rounded-md shadow-lg px-9 bg-cyan-700 shadow-cyan-100 hover:bg-opacity-90 shadow-sm hover:shadow-lg border transition hover:-translate-y-0.5 duratioin-150"
+            >
+              <span>next</span>
+              <svg
+                xmlns="https://www.w3.org/2000/svg"
+                class="w-7"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <line x1="13" y1="18" x2="19" y2="12" />
+                <line x1="13" y1="6" x2="19" y2="12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- right -->
+        <img
+          class="w-[430px] hidden md:block"
+          src="https://picsum.photos/600/600?random=10"
+          alt=""
+        />
+      </div>
     </div>
   </body>
 </html>
