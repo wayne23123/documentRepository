@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>橫式版面</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .wrap {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        /* background: linear-gradient(-30deg,#fd); */
+      }
+      .container {
+        width: 1200px;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .item {
+        /* width: 370px; */
+        /* width: 598px; */
+
+        /* 配上拿掉 margin */
+        /* width: 1198px; */
+        
+        width: 568px;
+        margin: 0 15px;
+        display: flex;
+        background-color: #fff;
+        border: 1px solid #888;
+        box-shadow: 0 10px 30px rgba(160, 0, 0, 0.5);
+      }
+      .item .pic {
+        width: 50%;
+      }
+      .item .pic img {
+        width: 100%;
+        height: 100%;
+        /* 圖片變形 */
+        object-fit: cover;
+      }
+      .item .txt {
+        width: 50%;
+        padding: 20px;
+        /* 寬度會有變化 */
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        /* justify-content: center; */
+      }
+      .item .txt h2 {
+        font-weight: 500;
+        margin-bottom: 0.4em;
+      }
+      .item .txt p {
+        font-weight: 300;
+      }
+      .item .txt .btn {
+        line-height: 1.5em;
+        border: 1px solid #ccc;
+        padding: 0 1em;
+        /* flex尺寸預設變成滿版 */
+        align-self: flex-end;
+        text-decoration: none;
+        border-radius: 200px;
+        /* margin-top: 1em; */
+        margin-top: auto;
+        color: #aaa;
+      }
+      .item .txt .btn:hover {
+        background-color: #ccc;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="container">
+        <div class="item">
+          <div class="pic">
+            <img src="https://picsum.photos/400/400?random=10" alt="" />
+          </div>
+          <div class="txt">
+            <h2>test01</h2>
+            <a href="#" class="btn">more</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

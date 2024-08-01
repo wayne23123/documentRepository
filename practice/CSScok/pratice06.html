@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>footer版面</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap"
+    />
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+
+      body {
+        background-color: #c4c4c4;
+      }
+
+      .main-footer {
+        padding: 150px 0 0 0;
+        background: linear-gradient(-20deg, #3f5494, #c4c4c4);
+      }
+
+      .main-footer .container {
+        display: flex;
+        width: 1200px;
+        margin: auto;
+      }
+
+      .footer-item {
+        width: 0;
+        flex-grow: 1;
+        margin: 0 20px;
+      }
+
+      .footer-item h4 {
+        font-size: 24px;
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        margin: 0 0 0.5em 0;
+        padding: 0 0 0.5em 0;
+      }
+
+      .footer-item nav {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-item nav a {
+        color: #fff;
+        line-height: 1.4;
+        text-decoration: none;
+        padding: 5px 0;
+      }
+
+      .footer-item nav a:hover {
+        color: #fa0;
+      }
+
+      .footer-subs {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .footer-subs form {
+        display: flex;
+        width: 100%;
+        margin: auto 0px;
+      }
+
+      .footer-subs input[type='text'],
+      .footer-subs input[type='submit'] {
+        border: none;
+        padding: 5px 10px;
+      }
+
+      .footer-subs input[type='text'] {
+        width: 0;
+        flex-grow: 1;
+      }
+      .footer-subs input[type='submit'] {
+        color: #70f6df;
+        background-color: #3e5293;
+      }
+
+      .copyright {
+        width: 100%;
+        text-align: center;
+        margin: 150px 0 0 0;
+        padding: 10px 0;
+        background-color: #000;
+        color: #70f6df;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-footer">
+      <div class="container">
+        <div class="footer-item">
+          <h4>test01</h4>
+          <nav>
+            <a href="#"><i class="fa fa-angle-right"></i> link-1-01</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-1-02</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-1-03</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-1-04</a>
+          </nav>
+        </div>
+        <div class="footer-item">
+          <h4>test02</h4>
+          <nav>
+            <a href="#"><i class="fa fa-angle-right"></i> link-2-01</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-2-02</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-2-03</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-2-04</a>
+          </nav>
+        </div>
+        <div class="footer-item">
+          <h4>test03</h4>
+          <nav>
+            <a href="#"><i class="fa fa-angle-right"></i> link-3-01</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-3-02</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-3-03</a>
+            <a href="#"><i class="fa fa-angle-right"></i> link-3-04</a>
+          </nav>
+        </div>
+        <div class="footer-item footer-subs">
+          <h4>test04</h4>
+          <form>
+            <input type="text" />
+            <input type="submit" value="訂閱" />
+          </form>
+        </div>
+      </div>
+      <div class="copyright">Copytight &copy; 2024 Wayne23123</div>
+    </div>
+  </body>
+</html>
