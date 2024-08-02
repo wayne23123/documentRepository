@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>導航列版面</title>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+      @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+
+      .main-header {
+        /* background-color: #fff; */
+        background: linear-gradient(0deg, #fe70d8, #371371);
+      }
+
+      .main-header .container {
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .main-header .logo {
+        width: 100px;
+      }
+      .main-header .logo img {
+        width: 100%;
+        vertical-align: middle;
+      }
+      .main-header .main-nav {
+        /* margin: auto把剩餘空間分配給auto的值 */
+        margin: auto;
+        color: #fff;
+        padding: 5px 1em;
+      }
+
+      .main-header .main-nav a {
+        text-decoration: none;
+      }
+
+      .main-header .main-nav a:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        height: 0;
+        border-bottom: 1px solid #fff;
+      }
+
+      .main-header .header-search {
+        display: flex;
+      }
+
+      .main-header .header-search input {
+        border: none;
+        background-color: #fff;
+        padding: 5px 10px;
+      }
+
+      .main-header .header-search button:focus,
+      .main-header .header-search input:focus {
+        outline: none;
+      }
+
+      .main-header .header-search button {
+        border-radius: 0 200px 200px 0;
+      }
+
+      .main-header .header-search input {
+        border-radius: 200px 0 0 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <a href="#">
+          <img
+            class="logo"
+            src="https://picsum.photos/400/400?random=10"
+            alt=""
+          />
+        </a>
+        <nav class="main-nav">
+          <a href="#">test01</a>
+          <a href="#">test02</a>
+          <a href="#">test03</a>
+          <a href="#">test04</a>
+        </nav>
+        <form class="header-search">
+          <input type="search" />
+          <button>
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </div>
+    </header>
+  </body>
+</html>
