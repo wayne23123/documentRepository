@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>導覽列版面變化</title>
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+      @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+
+      .main-header {
+        /* background-color: #fff; */
+        background: linear-gradient(0deg, #c4c4c4, #fff);
+      }
+
+      .main-header .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        max-width: 1200px;
+        margin: auto;
+        height: 100px;
+      }
+
+      .main-header .logo {
+        width: 100px;
+        position: absolute;
+      }
+      .main-header .logo img {
+        width: 100%;
+        vertical-align: middle;
+      }
+      .main-header .main-nav {
+        display: flex;
+      }
+
+      /* .main-header .main-nav:first-of-type {
+        order: -1
+      } */
+
+      .main-header .main-nav a {
+        text-decoration: none;
+        color: #fff;
+        padding: 5px 1em;
+        transform: translateY(0px);
+        transition: 0.3s;
+      }
+
+      .main-header .main-nav a:hover {
+        transform: translateY(-10px);
+      }
+
+      .main-header .main-nav a:nth-child(3) {
+        margin: 0 0 0 140px;
+      }
+
+      .main-header .main-nav a:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        height: 0;
+        border-bottom: 1px solid #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <a href="#" class="logo">
+          <img src="https://picsum.photos/400/400?random=10" alt="" />
+        </a>
+        <nav class="main-nav">
+          <a href="#">test01</a>
+          <a href="#">test02</a>
+        </nav>
+        <nav class="main-nav">
+          <a href="#">test03</a>
+          <a href="#">test04</a>
+        </nav>
+      </div>
+    </header>
+  </body>
+</html>
