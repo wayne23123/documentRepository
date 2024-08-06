@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>麵包屑</title>
+    <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap"
+  />
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        body {
+            background-color: #c4c4c4;
+        }
+
+        .wrap {
+            padding: 10px 0;
+            background-color: #565656;
+        }
+
+        .breadcrumb {
+            width: 90%;
+            margin: auto;
+            display: flex;
+        }
+
+        .breadcrumb li {
+            padding: 0 20px;
+        }
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .breadcrumb a:hover {
+            color: #ff0
+        }
+
+        .breadcrumb li + li {
+            padding-left: 0;
+        }
+
+        .breadcrumb li + li:before {
+            content: '>';
+            color: #fff;
+            margin-right: 20px;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+        <ol class="breadcrumb">
+            <li><a href="#">test01</a></li>
+            <li><a href="#">test02</a></li>
+            <li><a href="#">test03</a></li>
+            <li><a href="#">test04</a></li>
+            <li><a href="#">test05</a></li>
+        </ol>
+    </div>
+  </body>
+</html>
