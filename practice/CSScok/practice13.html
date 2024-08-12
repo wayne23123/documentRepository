@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>側邊選單</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+      @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        background-color: #546377;
+      }
+
+      .side-menu {
+        width: 300px;
+        height: 100%;
+        padding: 50px 0;
+        /* 出現垂直的捲軸，解法： */
+        box-sizing: border-box;
+        background-image: linear-gradient(0deg, #3381b0, #08c7a5);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .side-menu form {
+        display: flex;
+        margin: 0 10px;
+      }
+
+      .side-menu form input {
+        border: none;
+        padding: 5px 10px;
+        width: 230px;
+      }
+      .side-menu form button {
+        border: none;
+        padding: 5px 10px;
+        width: 50px;
+      }
+
+      nav a {
+        /* block會佔掉一整列空間 */
+        display: block;
+        padding: 10px;
+        color: #fff;
+        text-decoration: none;
+        position: relative;
+      }
+
+      nav a + a::before {
+        /* 沒有content，before就不存在 */
+        content: '';
+        /* 用絕對定位釘到上面去 */
+        position: absolute;
+        border-top: 1px solid #fff;
+        left: 10px;
+        right: 10px;
+        top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="side-menu">
+      <form>
+        <input type="search" />
+        <button>
+          <i class="fa fa-search"></i>
+        </button>
+      </form>
+      <nav>
+        <a href="#">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          TEST</a
+        >
+        <a href="#">
+          <i class="fa fa-gavel" aria-hidden="true"></i>
+
+          TEST2</a
+        >
+        <a href="#">
+          <i class="fa fa-object-group" aria-hidden="true"></i>
+          TEST3</a
+        >
+        <a href="#">
+          <i class="fa fa-globe" aria-hidden="true"></i>
+
+          TEST4</a
+        >
+        <a href="#">
+          <i class="fa fa-globe" aria-hidden="true"></i>
+          TEST5</a
+        >
+      </nav>
+    </div>
+  </body>
+</html>
