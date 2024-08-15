@@ -42,7 +42,7 @@
         display: flex;
         flex-direction: column;
         box-shadow: 5px 0px 10px hsl(240, 40%, 15%, 0.6);
-        /* transform: translateX(-100%); */
+        transform: translateX(-100%);
         transition: 0.3s;
       }
 
@@ -117,6 +117,10 @@
         font-family: 'Noto Sans TC', sans-serif;
       }
 
+      .nav li {
+        position: relative;
+      }
+
       /* .nav a + a::before { */
       .nav li + li a::before {
         /* 沒有content，before就不存在 */
@@ -137,13 +141,29 @@
         transition: 0.3s;
       }
 
-      .nav a:hover .fa {
-        margin-right: 0;
+      /* .nav a:hover .fa { */
+      .nav li:hover .fa {
+        margin-right: 0em;
         transform: scale(1);
       }
 
+      .nav li:hover > a {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
       .nav ul {
-        position: relative;
+        display: none;
+        position: absolute;
+        left: 100%;
+        width: 300px;
+        /* top: 0; */
+        top: 6px;
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 5px 5px 10px hsl(240, 40%, 15%, 0.6);
+      }
+
+      .nav li:hover > ul {
+        display: block;
       }
     </style>
   </head>
@@ -164,11 +184,47 @@
             TEST</a
           >
           <ul>
-            <li><a href="#">第二層TEST1</a></li>
-            <li><a href="#">第二層TEST2</a></li>
-            <li><a href="#">第二層TEST3</a></li>
-            <li><a href="#">第二層TEST4</a></li>
-            <li><a href="#">第二層TEST5</a></li>
+            <li>
+              <a href="#">第二層TEST1</a>
+              <ul>
+                <li><a href="#">第三層TEST1</a></li>
+                <li><a href="#">第三層TEST2</a></li>
+                <li><a href="#">第三層TEST3</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">第二層TEST2</a>
+              <ul>
+                <li><a href="#">第三層TEST1</a></li>
+                <li><a href="#">第三層TEST2</a></li>
+                <li><a href="#">第三層TEST3</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">第二層TEST3</a>
+
+              <ul>
+                <li><a href="#">第三層TEST1</a></li>
+                <li><a href="#">第三層TEST2</a></li>
+                <li><a href="#">第三層TEST3</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">第二層TEST4</a>
+              <ul>
+                <li><a href="#">第三層TEST1</a></li>
+                <li><a href="#">第三層TEST2</a></li>
+                <li><a href="#">第三層TEST3</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#">第二層TEST5</a>
+              <ul>
+                <li><a href="#">第三層TEST1</a></li>
+                <li><a href="#">第三層TEST2</a></li>
+                <li><a href="#">第三層TEST3</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
         <li>
