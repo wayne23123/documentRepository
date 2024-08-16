@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登入表單</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+      @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+        <form class='form'>
+            <h2>會員登入</h2>
+            <div class="group">
+                <label for="user_id">帳號</label>
+                <!-- id為了讓label使用 -->
+                <input type="text" name="" id="user_id">
+            </div>
+            <div class="group">
+                <label for="user_password">密碼</label>
+                <input type="password" name="" id="user_password">
+            </div>
+            <div class="btn-group">
+                <button class='btn'>登入</button>
+                <button class='btn'>取消</button>
+            </div>
+        </form>
+    </div>
+  </body>
+</html>
