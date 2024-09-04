@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>版面</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
+    />
+    <style type="text/css">
+      @import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap');
+      @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-family: 'Noto Sans TC', sans-serif;
+      }
+
+      .wrap {
+        margin: 100px 0;
+      }
+
+      .container {
+        position: relative;
+        width: 1200px;
+        margin: auto;
+      }
+
+      .container h1 {
+        width: 400px;
+        font-size: 90px;
+        box-sizing: border-box;
+        padding: 15px;
+        /* background-color: #eee; */
+        color: #aaa;
+        /* position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto; */
+        float: right;
+        position: relative;
+      }
+
+      .container h1:before {
+        content: '';
+        /* display: block; */
+        /* 物件設定成絕對定位時，會強制轉成 block */
+        position: absolute;
+        z-index: -1;
+        width: 200px;
+        height: 200px;
+        border: 30px solid #eee;
+      }
+
+      .container .txt {
+        column-count: 2;
+        column-gap: 460px;
+      }
+
+      .container p {
+        line-height: 1.6;
+        margin-bottom: 1em;
+      }
+
+      .container p:first-child:first-letter {
+        font-size: 40px;
+        float: left;
+        padding-right: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="container">
+        <h1>test title</h1>
+        <div class="txt">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor quos
+            nulla aspernatur veniam molestias, hic a iure dignissimos atque
+            harum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor quos
+            nulla aspernatur veniam molestias, hic a iure dignissimos atque
+            harum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor quos
+            nulla aspernatur veniam molestias, hic a iure dignissimos atque
+            harum.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor quos
+            nulla aspernatur veniam molestias, hic a iure dignissimos atque
+            harum.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
